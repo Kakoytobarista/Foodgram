@@ -3,7 +3,7 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.contrib.auth.password_validation import validate_password
 
-from backend.foodgram.enums.user_enum import UserEnum
+from enums.user_enum import UserEnum
 
 
 class User(AbstractUser):
@@ -27,7 +27,6 @@ class User(AbstractUser):
         validators=[validate_password],
     )
     email = models.EmailField(
-        unique=True,
         max_length=UserEnum.EMAIL_MAX_LENGTH.value,
         verbose_name=UserEnum.EMAIL_VERBOSE_NAME.value,
     )
@@ -50,3 +49,14 @@ class User(AbstractUser):
         max_length=UserEnum.LAST_NAME_MAX_LENGTH.value,
         verbose_name=UserEnum.LAST_NAME_VERBOSE_NAME.value
     )
+    subscribe = models.ManyToManyField(
+        verbose_name='Подписка',
+        related_name='subscribers',
+        to='self',
+        symmetrical=False,
+    )
+
+    class Meta:
+        verbose_name = UserEnum.USER_VERBOSE_NAME.value
+        verbose_name_plural = UserEnum.USER_VERBOSE_NAME_PLURAL.value
+

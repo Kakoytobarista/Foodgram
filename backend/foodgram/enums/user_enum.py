@@ -2,6 +2,9 @@ import enum
 
 
 class UserEnum(enum.Enum):
+    USER_VERBOSE_NAME = 'Пользователь'
+    USER_VERBOSE_NAME_PLURAL = 'Пользователи'
+
     AUTH_USER = 'Авторизованный пользователь'
     ADMIN_USER = 'Администратор'
     ROLE_VERBOSE_NAME = 'Пользовательская роль'
@@ -21,9 +24,13 @@ class UserEnum(enum.Enum):
     PASSWORD_VERBOSE_NAME = 'Паспорт'
     PASSWORD_MAX_LENGTH = 100
 
-    FIRST_NAME_VERBOSE_NAME = 'Фамилия'
+    FIRST_NAME_VERBOSE_NAME = 'Имя'
     FIRST_NAME_MAX_LENGTH = 150
 
     LAST_NAME_VERBOSE_NAME = 'Фамилия'
     LAST_NAME_MAX_LENGTH = 150
 
+    USER_RESET_PASSWORD_ERR_MESSAGE = ('Текущий пароль должен совпадать '
+                                       'с предыдущим')
+    USER_AUTH_ERR_MESSAGE = ('Проверьте пароль или '
+                             'попробуйте позже')

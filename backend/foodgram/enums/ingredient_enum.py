@@ -2,6 +2,9 @@ import enum
 
 
 class IngredientEnum(enum.Enum):
+    INGREDIENT_VERBOSE_NAME = 'Ингридиент'
+    INGREDIENT_VERBOSE_NAME_PLURAL = 'Ингридиенты'
+
     NAME_MAX_LENGTH = 100
     NAME_VERBOSE_NAME = 'Название ингридиента'
 

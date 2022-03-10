@@ -2,6 +2,9 @@ import enum
 
 
 class RecipeEnum(enum.Enum):
+    RECIPE_VERBOSE_NAME = 'Рецепт'
+    RECIPE_VERBOSE_NAME_PLURAL = 'Рецепты'
+
     AUTHOR_RELATED_NAME = 'recipes'
     AUTHOR_VERBOSE_NAME = 'Автор'
 
@@ -19,5 +22,7 @@ class RecipeEnum(enum.Enum):
     TAGS_VERBOSE_NAME = ' Теги'
 
     COOKING_TIME = 'Время приготовления'
+
+    RECIPE_PUB_DATE = 'Дата создания'
 
 
