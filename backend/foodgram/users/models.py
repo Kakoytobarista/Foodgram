@@ -50,9 +50,9 @@ class User(AbstractUser):
         verbose_name=UserEnum.LAST_NAME_VERBOSE_NAME.value
     )
     subscribe = models.ManyToManyField(
-        verbose_name='Подписка',
-        related_name='subscribers',
-        to='self',
+        verbose_name=UserEnum.SUBSCRIBE_VERBOSE_NAME.value,
+        related_name=UserEnum.SUBSCRIBE_RELATED_NAME.value,
+        to=UserEnum.SUBSCRIBE_TO.value,
         symmetrical=False,
     )
 

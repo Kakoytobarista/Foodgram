@@ -1,6 +1,7 @@
 from django.db import models
 
 from enums.ingredient_enum import IngredientEnum
+from enums.ingredient_recipe_enum import IngredientRecipeEnum
 from enums.recipe_enum import RecipeEnum
 from enums.tag_enum import TagEnum
 from users.models import User
@@ -46,6 +47,14 @@ class Recipe(models.Model):
                                   related_name=RecipeEnum.TAGS_RELATED_NAME.value,
                                   verbose_name=RecipeEnum.TAGS_VERBOSE_NAME.value)
     cooking_time = models.IntegerField(verbose_name=RecipeEnum.COOKING_TIME.value)
+    favorite = models.ManyToManyField(to=User,
+                                      verbose_name=RecipeEnum.FAVORITES_VERBOSE_NAME.value,
+                                      related_name=RecipeEnum.FAVORITES_RELATED_NAME.value,
+                                      symmetrical=False,)
+    in_cart = models.ManyToManyField(to=User,
+                                     verbose_name=RecipeEnum.IN_CARD_VERBOSE_NAME.value,
+                                     related_name=RecipeEnum.IN_CARD_RELATED_NAME.value,
+                                     symmetrical=False,)
     pub_date = models.DateTimeField(auto_now_add=True,
                                     db_index=True,
                                     verbose_name=RecipeEnum.RECIPE_PUB_DATE.value,
@@ -54,4 +63,30 @@ class Recipe(models.Model):
     class Meta:
         verbose_name = RecipeEnum.RECIPE_VERBOSE_NAME.value
         verbose_name_plural = RecipeEnum.RECIPE_VERBOSE_NAME_PLURAL.value
-        ordering = ['pub_date']
+        ordering = RecipeEnum.RECIPE_ORDERING.value
+
+
+class IngredientRecipe(models.Model):
+    ingredient = models.ForeignKey(
+        Ingredient,
+        on_delete=models.CASCADE,
+        verbose_name=IngredientEnum.INGREDIENT_VERBOSE_NAME.value
+    )
+    recipe = models.ForeignKey(
+        Recipe,
+        on_delete=models.CASCADE,
+        related_name=IngredientRecipeEnum.RECIPE_RELATED_NAME.value,
+        verbose_name=RecipeEnum.RECIPE_VERBOSE_NAME.value
+    )
+    amount = models.PositiveSmallIntegerField(
+        verbose_name=IngredientRecipeEnum.RECIPE_AMOUNT_VERBOSE_NAME.value)
+
+    class Meta:
+        verbose_name = IngredientRecipeEnum.VERBOSE_NAME.value
+        verbose_name_plural = IngredientRecipeEnum.PLURAL_VERBOSE_NAME.value
+        constraints = [
+            models.UniqueConstraint(
+                fields=IngredientRecipeEnum.CONSTRAINS_RECIPE_FIELDS.value,
+                name=IngredientRecipeEnum.CONSTRAINS_RECIPE_NAME.value
+            ),
+        ]

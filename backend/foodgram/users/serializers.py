@@ -85,6 +85,7 @@ class UserSubscribeSerializer(UserSerializer):
         )
         read_only_fields = '__all__',
 
+    @staticmethod
     def get_is_subscribed(*args):
         """Проверка подписки пользователей.
         Переопределённый метод родительского класса для уменьшения нагрузки,
@@ -103,34 +104,3 @@ class UserSubscribeSerializer(UserSerializer):
             int: Количество рецептов созданных запрошенным пользователем.
         """
         return obj.recipes.count()
-
-
-#     @staticmethod
-#     def validate_current_password(data, current_password):
-#         username: str = data.get('username')
-#         user = get_object_or_404(User, username=username)
-#         if user.password != current_password:
-#             err_message = UserEnum.USER_RESET_PASSWORD_ERR_MESSAGE.value
-#             raise serializers.ValidationError(err_message)
-#         return current_password
-#
-#
-# class UserAuthSerializer(serializers.ModelSerializer):
-#
-#     class Meta:
-#         model = User
-#         fields = (
-#             'password',
-#             'email',
-#         )
-#
-#     @staticmethod
-#     def validate(data, **kwargs):
-#         email = data.get('email')
-#         password = data.get('password')
-#         user = get_object_or_404(User, email=email)
-#         if user.password != password:
-#             err_message = UserEnum.USER_AUTH_ERR_MESSAGE.value
-#             raise serializers.ValidationError(err_message)
-#
-#         return data

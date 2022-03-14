@@ -2,6 +2,8 @@ import enum
 
 
 class UserEnum(enum.Enum):
+    SUBSCRIBE_M2M = 'subscribe'
+
     USER_VERBOSE_NAME = 'Пользователь'
     USER_VERBOSE_NAME_PLURAL = 'Пользователи'
 
@@ -34,3 +36,18 @@ class UserEnum(enum.Enum):
                                        'с предыдущим')
     USER_AUTH_ERR_MESSAGE = ('Проверьте пароль или '
                              'попробуйте позже')
+
+    SUBSCRIBE_VERBOSE_NAME = 'Подписка'
+    SUBSCRIBE_RELATED_NAME = 'subscribers'
+    SUBSCRIBE_TO = 'self'
+
+    SUBSCRIBE_ERROR_ON_YOURSELF = {
+                                      "errors": "Нельзя удалить или подписаться на самого себя"
+                                  },
+    SUBSCRIBE_ERROR_YET_SUBSCRIBED = {
+                                      "errors": "Нельзя подписаться на уже подписанного"
+                                  },
+    SUBSCRIBE_ERROR_DELETE_NOTHING = {
+                                      "errors": "Нельзя удалить если не подписан"
+                                  },
+
