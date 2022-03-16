@@ -14,6 +14,9 @@ class Tag(models.Model):
                              verbose_name=TagEnum.COLOR_VERBOSE_NAME.value)
     slug = models.SlugField(verbose_name=TagEnum.SLUG_VERBOSE_NAME.value)
 
+    def __str__(self):
+        return f'{self.name}'
+
     class Meta:
         verbose_name = TagEnum.TAG_VERBOSE_NAME.value
         verbose_name_plural = TagEnum.TAG_VERBOSE_NAME_PLURAL.value
@@ -25,6 +28,9 @@ class Ingredient(models.Model):
     count = models.IntegerField(verbose_name=IngredientEnum.COUNT_VERBOSE_NAME.value)
     measurement_unit = models.CharField(max_length=IngredientEnum.MEASUREMENT_UNIT_MAX_LENGTH.value,
                                         verbose_name=IngredientEnum.MEASUREMENT_UNIT_VERBOSE_NAME.value)
+
+    def __str__(self):
+        return f'{self.name}'
 
     class Meta:
         verbose_name = IngredientEnum.INGREDIENT_VERBOSE_NAME.value
@@ -50,15 +56,18 @@ class Recipe(models.Model):
     favorite = models.ManyToManyField(to=User,
                                       verbose_name=RecipeEnum.FAVORITES_VERBOSE_NAME.value,
                                       related_name=RecipeEnum.FAVORITES_RELATED_NAME.value,
-                                      symmetrical=False,)
+                                      symmetrical=False)
     in_cart = models.ManyToManyField(to=User,
                                      verbose_name=RecipeEnum.IN_CARD_VERBOSE_NAME.value,
                                      related_name=RecipeEnum.IN_CARD_RELATED_NAME.value,
-                                     symmetrical=False,)
+                                     symmetrical=False)
     pub_date = models.DateTimeField(auto_now_add=True,
                                     db_index=True,
                                     verbose_name=RecipeEnum.RECIPE_PUB_DATE.value,
                                     )
+
+    def __str__(self):
+        return f'{self.name}'
 
     class Meta:
         verbose_name = RecipeEnum.RECIPE_VERBOSE_NAME.value

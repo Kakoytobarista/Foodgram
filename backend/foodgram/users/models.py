@@ -56,6 +56,9 @@ class User(AbstractUser):
         symmetrical=False,
     )
 
+    def __str__(self):
+        return f'{self.username}'
+
     class Meta:
         verbose_name = UserEnum.USER_VERBOSE_NAME.value
         verbose_name_plural = UserEnum.USER_VERBOSE_NAME_PLURAL.value

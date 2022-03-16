@@ -5,7 +5,7 @@ class RecipeEnum(enum.Enum):
     RECIPE_VERBOSE_NAME = 'Рецепт'
     RECIPE_VERBOSE_NAME_PLURAL = 'Рецепты'
 
-    RECIPE_ORDERING = ['pub_date']
+    RECIPE_ORDERING = ['-pub_date']
 
     AUTHOR_RELATED_NAME = 'recipes'
     AUTHOR_VERBOSE_NAME = 'Автор'
@@ -35,6 +35,16 @@ class RecipeEnum(enum.Enum):
     IN_CARD_RELATED_NAME = 'cart'
     IN_CARD_TO = 'self'
 
+    ERROR_MESSAGE_IS_FAVORITE_YET = {
+        'message': 'Рецепт уже добавлен в ваше избранное'
+    }
+    ERROR_MESSAGE_IS_NOT_FAVORITE = {
+        'message': 'Рецепт отсутствует в вашем избранном'
+    }
 
-
-
+    ERROR_MESSAGE_IS_IN_CART_YET = {
+        'message': 'Рецепт уже добавлен в корзину'
+    }
+    ERROR_MESSAGE_IS_NOT_IN_CART = {
+        'message': 'Рецепт отсутствует в корзине'
+                                    }

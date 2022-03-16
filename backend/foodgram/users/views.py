@@ -36,9 +36,15 @@ class UserViewSet(DjoserUserViewSet):
         subscriber = get_object_or_404(User, id=id)
         serializer = UserSubscribeSerializer(subscriber, many=False)
         if request.method in BaseEnum.ADD_METHODS.value:
+            if user.subscribe.filter(username=subscriber.username).exists():
+                return Response(UserEnum.SUBSCRIBE_ERROR_YET_SUBSCRIBED.value,
+                                status=status.HTTP_400_BAD_REQUEST)
             user.subscribe.add(subscriber)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         if request.method in BaseEnum.DEL_METHODS.value:
+            if not user.subscribe.filter(username=subscriber.username).exists():
+                return Response(UserEnum.SUBSCRIBE_ERROR_DELETE_NOTHING.value,
+                                status=status.HTTP_400_BAD_REQUEST)
             user.subscribe.remove(subscriber)
             return Response(status=status.HTTP_204_NO_CONTENT)
 

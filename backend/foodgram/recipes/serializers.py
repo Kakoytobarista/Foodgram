@@ -1,5 +1,6 @@
 from djoser.serializers import UserSerializer
 from rest_framework import serializers
+from rest_framework.decorators import action
 
 from drf_extra_fields.fields import Base64ImageField
 
@@ -129,3 +130,10 @@ class RecipeSerializer(serializers.ModelSerializer):
                   'name', 'image', 'text', 'cooking_time', 'id', 'ingredients'
                   )
         extra_kwargs = {'pub_date': {'write_only': True}}
+
+
+class RecipeFavoriteCartSerializer(serializers.ModelSerializer):
+    """Сериализатор для добавления в корзину/в избранное рецепта"""
+    class Meta:
+        model = Recipe
+        fields = 'id', 'name', 'image', 'cooking_time'

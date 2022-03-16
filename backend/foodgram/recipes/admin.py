@@ -10,6 +10,8 @@ class RecipeAdmin(admin.ModelAdmin):
         'text',
         'cooking_time',
     )
+    fields = ('name', 'text', 'cooking_time', 'tags',
+              'image', 'author', 'favorites_count')
     list_editable = (
         'name',
         'text',
@@ -18,8 +20,17 @@ class RecipeAdmin(admin.ModelAdmin):
     search_fields = (
         'name',
     )
-    list_filter = ('name',)
-    empty_value_display = '--empty--'
+    list_filter = ('name', 'author', 'tags')
+    readonly_fields = ('favorites_count',)
+
+    def favorites_count(self, obj):
+        result = 0
+        recipes = Recipe.objects.all()
+        for i in range(len(recipes)):
+            result += recipes[i].favorite.count()
+        return result
+
+    favorites_count.short_description = 'Число добавлений в избранное'
 
 
 class TagAdmin(admin.ModelAdmin):
