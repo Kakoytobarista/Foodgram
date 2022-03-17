@@ -3,7 +3,13 @@ from django.contrib import admin
 from recipes.models import Recipe, Tag, Ingredient
 
 
+class RecipeIngredientInline(admin.TabularInline):
+    model = Recipe.ingredients.through
+    extra = 1
+
+
 class RecipeAdmin(admin.ModelAdmin):
+    inlines = (RecipeIngredientInline,)
     list_display = (
         'author',
         'name',
