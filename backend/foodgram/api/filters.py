@@ -12,7 +12,7 @@ class RecipeFilterSet(filters.FilterSet):
     is_favorited = filters.BooleanFilter(method='filter_by_user')
     is_in_shopping_cart = filters.BooleanFilter(method='filter_by_user')
 
-    def filter_by_user(self, queryset, name):
+    def filter_by_user(self, queryset, name, value):
         return queryset.filter(**{name: self.request.user})
 
     class Meta:
