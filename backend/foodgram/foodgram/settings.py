@@ -2,6 +2,13 @@ import os
 
 from dotenv import load_dotenv
 
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
+
+sentry_sdk.init(
+    dsn="https://5d9465bc660840f997ca64c9e3f21fe2@o1170733.ingest.sentry.io/6264524", 
+    integrations=[DjangoIntegration()],
+) 
 
 load_dotenv()
 
