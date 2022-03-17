@@ -117,6 +117,7 @@ class UserViewSet(DjoserUserViewSet):
     """
     pagination_class = PageLimitPagination
     add_serializer = UserSubscribeSerializer
+    permission_classes = (IsAuthenticated,)
 
     @action(methods=('delete', 'post',), detail=True)
     def subscribe(self, request, id):
