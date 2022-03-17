@@ -1,6 +1,5 @@
 import os
 
-from datetime import timedelta
 from dotenv import load_dotenv
 
 
@@ -10,7 +9,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 SECRET_KEY = os.getenv('SECRET_KEY', default='9n_zkvx#y94i3#w1ci-rxb1yjhxd96+a1$ku95#6w(4ob(bn54')
 
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['217.28.231.1', '127.0.0.1', 'localhost', 'foodgram.myvnc.com']
 
@@ -65,8 +64,12 @@ WSGI_APPLICATION = 'foodgram.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': os.getenv('DB_ENGINE', default='django.db.backends.postgresql'),
+        'NAME': os.getenv('DB_NAME', default='foodgram'),
+        'USER': os.getenv('POSTGRES_USER', default='postgres'),
+        'PASSWORD': os.getenv('POSTGRES_PASSWORD', default='postgres'),
+        'HOST': os.getenv('DB_HOST', default='db'),
+        'PORT': os.getenv('DB_PORT', default='5432')
     }
 }
 
@@ -112,7 +115,7 @@ DJOSER = {
     'HIDE_USERS': False,
     'SERIALIZERS': {
         'user': 'api.serializers.UserSerializer',
-        'user_list': 'users.serializers.UserSerializer',
+        'user_list': 'api.serializers.UserSerializer',
         'current_user': 'api.serializers.UserSerializer',
         'user_create': 'api.serializers.UserSerializer',
     },
