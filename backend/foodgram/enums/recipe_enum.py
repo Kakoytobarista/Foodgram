@@ -47,4 +47,6 @@ class RecipeEnum(enum.Enum):
     }
     ERROR_MESSAGE_IS_NOT_IN_CART = {
         'message': 'Рецепт отсутствует в корзине'
-                                    }
+    }
+    FOOD_READY_YET_MESSAGE = 'Ваше блюдо уже готово!'
+    TOO_MUCH_WAIT_MESSAGE = 'Очень долго ждать...'

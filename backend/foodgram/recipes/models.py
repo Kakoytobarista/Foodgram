@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 from enums.ingredient_enum import IngredientEnum
 from enums.ingredient_recipe_enum import IngredientRecipeEnum
@@ -68,7 +69,11 @@ class Recipe(models.Model):
         related_name=RecipeEnum.TAGS_RELATED_NAME.value,
         verbose_name=RecipeEnum.TAGS_VERBOSE_NAME.value,
     )
-    cooking_time = models.IntegerField(verbose_name=RecipeEnum.COOKING_TIME.value)
+    cooking_time = models.IntegerField(verbose_name=RecipeEnum.COOKING_TIME.value,
+                                       validators=(
+                                           MinValueValidator(1, RecipeEnum.FOOD_READY_YET_MESSAGE.value),
+                                           MaxValueValidator(600, RecipeEnum.TOO_MUCH_WAIT_MESSAGE.value),
+                                       ))
     favorite = models.ManyToManyField(
         to=User,
         verbose_name=RecipeEnum.FAVORITES_VERBOSE_NAME.value,
