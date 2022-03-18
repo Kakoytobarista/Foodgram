@@ -1,14 +1,13 @@
 import django.contrib.auth.validators
 from django.contrib.auth.models import AbstractUser
-from django.db import models
 from django.contrib.auth.password_validation import validate_password
-
+from django.db import models
 from enums.user_enum import UserEnum
 
 
 class User(AbstractUser):
-    AUTH_USER = 'auth_user'
-    ADMIN = 'admin'
+    AUTH_USER = "auth_user"
+    ADMIN = "admin"
     USER_ROLE_CHOICES = [
         (AUTH_USER, UserEnum.AUTH_USER.value),
         (ADMIN, UserEnum.ADMIN_USER.value),
@@ -42,12 +41,12 @@ class User(AbstractUser):
     first_name = models.CharField(
         blank=True,
         max_length=UserEnum.FIRST_NAME_MAX_LENGTH.value,
-        verbose_name=UserEnum.FIRST_NAME_VERBOSE_NAME.value
+        verbose_name=UserEnum.FIRST_NAME_VERBOSE_NAME.value,
     )
     last_name = models.CharField(
         blank=True,
         max_length=UserEnum.LAST_NAME_MAX_LENGTH.value,
-        verbose_name=UserEnum.LAST_NAME_VERBOSE_NAME.value
+        verbose_name=UserEnum.LAST_NAME_VERBOSE_NAME.value,
     )
     subscribe = models.ManyToManyField(
         verbose_name=UserEnum.SUBSCRIBE_VERBOSE_NAME.value,
@@ -57,9 +56,8 @@ class User(AbstractUser):
     )
 
     def __str__(self):
-        return f'{self.username}'
+        return f"{self.username}"
 
     class Meta:
         verbose_name = UserEnum.USER_VERBOSE_NAME.value
         verbose_name_plural = UserEnum.USER_VERBOSE_NAME_PLURAL.value
-
