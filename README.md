@@ -1,6 +1,6 @@
 # Проект Foodgram
 
-![Workflow](https://github.com/yankovskaya-ktr/foodgram-project-react/actions/workflows/foodgram_workflow.yml/badge.svg)
+### http://foodgram.myvnc.com/recipes
 
 Дипломный проект курса Python-разработчик от Яндекс.Практикум.
 
