@@ -1,17 +1,12 @@
 from django.db.models import Sum
 from django_filters.rest_framework import DjangoFilterBackend
 from djoser.views import UserViewSet as DjoserUserViewSet
-from enums.base_enum import BaseEnum
-from enums.recipe_enum import RecipeEnum
-from enums.user_enum import UserEnum
-from recipes.models import Ingredient, IngredientRecipe, Recipe, Tag
 from rest_framework import status, viewsets
 from rest_framework.decorators import action
 from rest_framework.filters import SearchFilter
 from rest_framework.generics import get_object_or_404
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
-from users.models import User
 
 from api.filters import RecipeFilterSet
 from api.mixins import ListRetrieveViewSet
@@ -21,6 +16,11 @@ from api.serializers import (IngredientSerializer,
                              RecipeFavoriteCartSerializer, RecipeSerializer,
                              TagSerializer, UserSubscribeSerializer)
 from api.utils import get_ingredient_file
+from enums.base_enum import BaseEnum
+from enums.recipe_enum import RecipeEnum
+from enums.user_enum import UserEnum
+from recipes.models import Ingredient, IngredientRecipe, Recipe, Tag
+from users.models import User
 
 
 class TagViewSet(ListRetrieveViewSet):

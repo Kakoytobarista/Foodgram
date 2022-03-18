@@ -1,4 +1,5 @@
 from django.db import models
+
 from enums.ingredient_enum import IngredientEnum
 from enums.ingredient_recipe_enum import IngredientRecipeEnum
 from enums.recipe_enum import RecipeEnum
