@@ -121,7 +121,7 @@ class RecipeSerializer(serializers.ModelSerializer):
     """Сериализатор для модели Recipe"""
 
     author = UserSerializer(read_only=True)
-    tags = TagSerializer(many=True)
+    tags = TagSerializer(many=True, read_only=True)
     ingredients = IngredientRecipeSerializer(many=True, source="ingredients_amount")
     is_favorited = serializers.SerializerMethodField()
     is_in_shopping_cart = serializers.SerializerMethodField()
@@ -160,9 +160,10 @@ class RecipeSerializer(serializers.ModelSerializer):
         """Переопределенный метод create для корректного
         добавления ингридиентов и тегов"""
         tags = validated_data.pop("tags")
+        print(tags)
         ingredients_data = validated_data.pop("ingredients_amount")
         recipe = Recipe.objects.create(**validated_data)
-        recipe.tags.add(*tags)
+        recipe.tags.set(tags)
         self.add_ingredients(recipe, ingredients_data)
         return recipe
 
