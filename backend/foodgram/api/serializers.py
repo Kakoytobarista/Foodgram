@@ -76,11 +76,12 @@ class ShortRecipeSerializer(serializers.ModelSerializer):
 
 
 class TagSerializer(serializers.ModelSerializer):
-    """Сериализатор для модели Tag"""
-
+    """Сериализатор для вывода тэгов.
+    """
     class Meta:
         model = Tag
-        fields = "id", "name", "color", "slug"
+        fields = '__all__'
+        read_only_fields = '__all__',
 
 
 class IngredientSerializer(serializers.ModelSerializer):
@@ -121,11 +122,30 @@ class RecipeSerializer(serializers.ModelSerializer):
     """Сериализатор для модели Recipe"""
 
     author = UserSerializer(read_only=True)
-    tags = TagSerializer(many=True, read_only=True)
+    tags = serializers.PrimaryKeyRelatedField(
+        many=True,
+        queryset=Tag.objects.all()
+    )
     ingredients = IngredientRecipeSerializer(many=True, source="ingredients_amount")
     is_favorited = serializers.SerializerMethodField()
     is_in_shopping_cart = serializers.SerializerMethodField()
     image = Base64ImageField()
+
+    class Meta:
+        model = Recipe
+        fields = (
+            "tags",
+            "author",
+            "is_favorited",
+            "is_in_shopping_cart",
+            "name",
+            "image",
+            "text",
+            "cooking_time",
+            "id",
+            "ingredients",
+        )
+        extra_kwargs = {"pub_date": {"write_only": True}}
 
     def get_is_favorited(self, obj):
         """Достаем булово значение поля is_favorite"""
@@ -160,10 +180,9 @@ class RecipeSerializer(serializers.ModelSerializer):
         """Переопределенный метод create для корректного
         добавления ингридиентов и тегов"""
         tags = validated_data.pop("tags")
-        print(tags)
         ingredients_data = validated_data.pop("ingredients_amount")
         recipe = Recipe.objects.create(**validated_data)
-        recipe.tags.set(tags)
+        recipe.tags.add(*tags)
         self.add_ingredients(recipe, ingredients_data)
         return recipe
 
@@ -179,22 +198,6 @@ class RecipeSerializer(serializers.ModelSerializer):
             IngredientRecipe.objects.filter(recipe=instance).delete()
             self.add_ingredients(instance, ingredients_data)
         return super().update(instance, validated_data)
-
-    class Meta:
-        model = Recipe
-        fields = (
-            "tags",
-            "author",
-            "is_favorited",
-            "is_in_shopping_cart",
-            "name",
-            "image",
-            "text",
-            "cooking_time",
-            "id",
-            "ingredients",
-        )
-        extra_kwargs = {"pub_date": {"write_only": True}}
 
 
 class RecipeFavoriteCartSerializer(serializers.ModelSerializer):
