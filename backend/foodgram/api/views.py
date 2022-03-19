@@ -14,7 +14,7 @@ from api.paginators import PageLimitPagination
 from api.pemissions import IsAuthorOrStaffOrReadOnly
 from api.serializers import (IngredientSerializer,
                              RecipeFavoriteCartSerializer, RecipeSerializer,
-                             TagSerializer, UserSubscribeSerializer)
+                             TagSerializer, UserSubscribeSerializer, RecipeCreateSerializer)
 from api.utils import get_ingredient_file
 from enums.base_enum import BaseEnum
 from enums.recipe_enum import RecipeEnum
@@ -44,6 +44,12 @@ class RecipeViewSet(viewsets.ModelViewSet):
     permission_classes = (IsAuthorOrStaffOrReadOnly,)
     filter_backends = (DjangoFilterBackend,)
     filterset_class = RecipeFilterSet
+
+    def get_serializer_class(self):
+        if self.request.method in ('POST', 'PUT', 'PATCH'):
+            return RecipeCreateSerializer
+        else:
+            return RecipeSerializer
 
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)

@@ -6,6 +6,8 @@ from rest_framework.validators import UniqueValidator
 from recipes.models import Ingredient, IngredientRecipe, Recipe, Tag
 from users.models import User
 
+from api.mixins import RecipeMixin
+
 
 class UserSerializer(serializers.ModelSerializer):
     """Сериализатор для использования с моделью User."""
@@ -81,7 +83,6 @@ class TagSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tag
         fields = '__all__'
-        read_only_fields = '__all__',
 
 
 class IngredientSerializer(serializers.ModelSerializer):
@@ -118,7 +119,7 @@ class IngredientRecipeSerializer(serializers.ModelSerializer):
         return value
 
 
-class RecipeSerializer(serializers.ModelSerializer):
+class RecipeCreateSerializer(RecipeMixin):
     """Сериализатор для модели Recipe"""
 
     author = UserSerializer(read_only=True)
@@ -147,24 +148,6 @@ class RecipeSerializer(serializers.ModelSerializer):
         )
         extra_kwargs = {"pub_date": {"write_only": True}}
 
-    def get_is_favorited(self, obj):
-        """Достаем булово значение поля is_favorite"""
-        user = self.context.get("request").user
-        if user.is_anonymous:
-            return False
-        return Recipe.objects.filter(
-            favorite__username=user.username, id=obj.id
-        ).exists()
-
-    def get_is_in_shopping_cart(self, obj):
-        """Достаем булово значение поля is_in_shopping_cart"""
-        user = self.context.get("request").user
-        if user.is_anonymous:
-            return False
-        return Recipe.objects.filter(
-            in_cart__username=user.username, id=obj.id
-        ).exists()
-
     @staticmethod
     def add_ingredients(recipe, ingredients_data):
         """Метод для добавления строк ингридиентов в
@@ -179,8 +162,8 @@ class RecipeSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         """Переопределенный метод create для корректного
         добавления ингридиентов и тегов"""
-        tags = validated_data.pop("tags")
-        ingredients_data = validated_data.pop("ingredients_amount")
+        ingredients_data = validated_data.pop('ingredients_amount')
+        tags = validated_data.pop('tags')
         recipe = Recipe.objects.create(**validated_data)
         recipe.tags.add(*tags)
         self.add_ingredients(recipe, ingredients_data)
@@ -198,6 +181,30 @@ class RecipeSerializer(serializers.ModelSerializer):
             IngredientRecipe.objects.filter(recipe=instance).delete()
             self.add_ingredients(instance, ingredients_data)
         return super().update(instance, validated_data)
+
+
+class RecipeSerializer(RecipeMixin):
+    tags = TagSerializer(read_only=True, many=True)
+    ingredients = IngredientSerializer(read_only=True, many=True)
+    image = Base64ImageField()
+    author = UserSerializer(read_only=True)
+    is_favorited = serializers.SerializerMethodField(read_only=True)
+    is_in_shopping_cart = serializers.SerializerMethodField(read_only=True)
+
+    class Meta:
+        model = Recipe
+        fields = (
+            'id',
+            'tags',
+            'author',
+            'ingredients',
+            'is_favorited',
+            'is_in_shopping_cart',
+            'name',
+            'image',
+            'text',
+            'cooking_time'
+        )
 
 
 class RecipeFavoriteCartSerializer(serializers.ModelSerializer):
