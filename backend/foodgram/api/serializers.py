@@ -185,7 +185,9 @@ class RecipeCreateSerializer(RecipeMixin):
 
 class RecipeSerializer(RecipeMixin):
     tags = TagSerializer(read_only=True, many=True)
-    ingredients = IngredientSerializer(read_only=True, many=True)
+    ingredients = IngredientRecipeSerializer(read_only=True,
+                                             many=True,
+                                             source="ingredients_amount")
     image = Base64ImageField()
     author = UserSerializer(read_only=True)
     is_favorited = serializers.SerializerMethodField(read_only=True)
