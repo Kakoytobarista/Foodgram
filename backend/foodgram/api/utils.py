@@ -39,7 +39,7 @@ def add_in_cart(recipe, user):
 
 
 def del_from_favorite(recipe, user):
-    recipe.is_favorited.remove(user)
+    recipe.favorite.remove(user)
 
 
 def del_from_cart(recipe, user):
