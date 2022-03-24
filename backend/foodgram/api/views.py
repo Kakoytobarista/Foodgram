@@ -12,10 +12,12 @@ from api.filters import RecipeFilterSet
 from api.mixins import ListRetrieveViewSet
 from api.paginators import PageLimitPagination
 from api.pemissions import IsAuthorOrStaffOrReadOnly
-from api.serializers import (IngredientSerializer,
-                             RecipeFavoriteCartSerializer, RecipeSerializer,
-                             TagSerializer, UserSubscribeSerializer, RecipeCreateSerializer)
-from api.utils import get_ingredient_file
+from api.serializers import (IngredientSerializer, RecipeSerializer,
+                             TagSerializer, UserSubscribeSerializer,
+                             RecipeCreateSerializer)
+from api.utils import (get_ingredient_file, is_in_cart, add_in_cart,
+                       add_delete_favorite_in_cart, del_from_cart,
+                       is_favorite, add_favorite, del_from_favorite)
 from enums.base_enum import BaseEnum
 from enums.recipe_enum import RecipeEnum
 from enums.user_enum import UserEnum
@@ -57,36 +59,15 @@ class RecipeViewSet(viewsets.ModelViewSet):
     def perform_update(self, serializer):
         serializer.save(author=self.request.user)
 
-    @action(
-        methods=["delete", "post"],
-        detail=True,
-        permission_classes=[
-            IsAuthenticated,
-        ],
-    )
+    @action(methods=["delete", "post"],
+            detail=True,
+            permission_classes=[IsAuthenticated, ])
     def favorite(self, request, pk):
-        user = self.request.user
-        if user.is_anonymous:
-            return Response(status=status.HTTP_401_UNAUTHORIZED)
-        recipe = get_object_or_404(Recipe, id=pk)
-        is_favorite = recipe.favorite.filter(username=user.username)
-        serializer = RecipeFavoriteCartSerializer(recipe)
-        if request.method in BaseEnum.POST_METHOD.value:
-            if is_favorite:
-                return Response(
-                    RecipeEnum.ERROR_MESSAGE_IS_FAVORITE_YET.value,
-                    status=status.HTTP_400_BAD_REQUEST,
-                )
-            recipe.favorite.add(user)
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        if request.method in BaseEnum.DEL_METHODS.value:
-            if not is_favorite:
-                return Response(
-                    RecipeEnum.ERROR_MESSAGE_IS_NOT_FAVORITE.value,
-                    status=status.HTTP_400_BAD_REQUEST,
-                )
-            recipe.favorite.remove(user)
-            return Response(status=status.HTTP_204_NO_CONTENT)
+        return add_delete_favorite_in_cart(
+            user=request.user, method=request.method,
+            is_favorite_or_is_in_cart=is_favorite, add_favorite_or_cart=add_favorite,
+            delete_favorite_or_cart=del_from_favorite, add_error_message=RecipeEnum.ERROR_MESSAGE_IS_FAVORITE_YET.value,
+            del_error_message=RecipeEnum.ERROR_MESSAGE_IS_NOT_FAVORITE.value, pk=pk)
 
     @action(
         methods=["delete", "post"],
@@ -96,28 +77,11 @@ class RecipeViewSet(viewsets.ModelViewSet):
         ],
     )
     def shopping_cart(self, request, pk):
-        user = self.request.user
-        if user.is_anonymous:
-            return Response(status=status.HTTP_401_UNAUTHORIZED)
-        recipe = get_object_or_404(Recipe, id=pk)
-        is_in_shop = recipe.in_cart.filter(username=user.username)
-        serializer = RecipeFavoriteCartSerializer(recipe)
-        if request.method in BaseEnum.POST_METHOD.value:
-            if is_in_shop:
-                return Response(
-                    RecipeEnum.ERROR_MESSAGE_IS_IN_CART_YET.value,
-                    status=status.HTTP_400_BAD_REQUEST,
-                )
-            recipe.in_cart.add(user)
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        if request.method in BaseEnum.DEL_METHODS.value:
-            if not is_in_shop:
-                return Response(
-                    RecipeEnum.ERROR_MESSAGE_IS_NOT_IN_CART.value,
-                    status=status.HTTP_400_BAD_REQUEST,
-                )
-            recipe.in_cart.remove(user)
-            return Response(status=status.HTTP_204_NO_CONTENT)
+        return add_delete_favorite_in_cart(
+            user=request.user, method=request.method,
+            is_favorite_or_is_in_cart=is_in_cart, add_favorite_or_cart=add_in_cart,
+            delete_favorite_or_cart=del_from_cart, add_error_message=RecipeEnum.ERROR_MESSAGE_IS_IN_CART_YET.value,
+            del_error_message=RecipeEnum.ERROR_MESSAGE_IS_NOT_IN_CART.value, pk=pk)
 
     @action(
         methods=[

@@ -11,7 +11,6 @@ from api.mixins import RecipeMixin
 
 class UserSerializer(serializers.ModelSerializer):
     """Сериализатор для использования с моделью User."""
-
     username = serializers.CharField(
         required=True, validators=[UniqueValidator(queryset=User.objects.all())]
     )
@@ -80,6 +79,7 @@ class ShortRecipeSerializer(serializers.ModelSerializer):
 class TagSerializer(serializers.ModelSerializer):
     """Сериализатор для вывода тэгов.
     """
+
     class Meta:
         model = Tag
         fields = '__all__'
@@ -87,7 +87,6 @@ class TagSerializer(serializers.ModelSerializer):
 
 class IngredientSerializer(serializers.ModelSerializer):
     """Сериализатор для модели Ingredient"""
-
     measurement_unit = serializers.CharField(required=False)
     name = serializers.CharField(required=False)
 
@@ -97,7 +96,7 @@ class IngredientSerializer(serializers.ModelSerializer):
 
 
 class IngredientRecipeSerializer(serializers.ModelSerializer):
-
+    """Сериализатор для атрибута класса RecipeSerializer"""
     id = serializers.PrimaryKeyRelatedField(
         source="ingredient", queryset=Ingredient.objects.all()
     )
@@ -184,6 +183,7 @@ class RecipeCreateSerializer(RecipeMixin):
 
 
 class RecipeSerializer(RecipeMixin):
+    """Сериализатор для чтения рецептов"""
     tags = TagSerializer(read_only=True, many=True)
     ingredients = IngredientRecipeSerializer(read_only=True,
                                              many=True,
@@ -219,8 +219,8 @@ class RecipeFavoriteCartSerializer(serializers.ModelSerializer):
 
 class UserSubscribeSerializer(UserSerializer):
     """Сериализатор для вывода авторов на которых подписан текущий пользователь."""
-
-    recipes = ShortRecipeSerializer(many=True, read_only=True)
+    recipes = ShortRecipeSerializer(many=True,
+                                    read_only=True)
     recipes_count = SerializerMethodField()
 
     class Meta:
