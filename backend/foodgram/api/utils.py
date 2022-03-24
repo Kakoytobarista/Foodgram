@@ -5,7 +5,6 @@ from rest_framework.response import Response
 
 from api.serializers import RecipeFavoriteCartSerializer
 from enums.base_enum import BaseEnum
-from enums.recipe_enum import RecipeEnum
 from recipes.models import Recipe
 
 
