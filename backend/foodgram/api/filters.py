@@ -1,3 +1,6 @@
+from typing import Any
+
+from django.db.models import QuerySet
 from django_filters import rest_framework as filters
 
 from recipes.models import Recipe, Tag
@@ -16,13 +19,13 @@ class RecipeFilterSet(filters.FilterSet):
         model = Recipe
         fields = ["author", "tags", "is_favorited", "is_in_shopping_cart"]
 
-    def filter_is_favorited(self, queryset, name, value):
+    def filter_is_favorited(self, queryset: QuerySet, name: Any, value: Any) -> QuerySet:
         user = self.request.user
         if value and user.is_authenticated:
             return queryset.filter(favorite__username=user)
         return queryset
 
-    def filter_is_in_shopping_cart(self, queryset, name, value):
+    def filter_is_in_shopping_cart(self, queryset: QuerySet, name: Any, value: Any):
         user = self.request.user
         if value and user.is_authenticated:
             return queryset.filter(in_cart__username=user)

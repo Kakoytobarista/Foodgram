@@ -1,7 +1,7 @@
 from django.db.models import Sum
 from django_filters.rest_framework import DjangoFilterBackend
 from djoser.views import UserViewSet as DjoserUserViewSet
-from rest_framework import status, viewsets
+from rest_framework import viewsets
 from rest_framework.decorators import action
 from rest_framework.filters import SearchFilter
 from rest_framework.generics import get_object_or_404
@@ -21,7 +21,6 @@ from api.utils import (get_ingredient_file, is_in_cart, add_in_cart,
                        add_subscribe, del_subscriber)
 from enums.base_enum import BaseEnum
 from enums.recipe_enum import RecipeEnum
-from enums.user_enum import UserEnum
 from recipes.models import Ingredient, IngredientRecipe, Recipe, Tag
 from users.models import User
 
@@ -37,7 +36,7 @@ class IngredientViewSet(ListRetrieveViewSet):
     serializer_class = IngredientSerializer
     permission_classes = (AllowAny,)
     filter_backends = (SearchFilter,)
-    search_fields = ("^name",)
+    search_fields = ('^name',)
 
 
 class RecipeViewSet(viewsets.ModelViewSet):
@@ -60,10 +59,12 @@ class RecipeViewSet(viewsets.ModelViewSet):
     def perform_update(self, serializer):
         serializer.save(author=self.request.user)
 
-    @action(methods=["delete", "post"],
+    @action(methods=BaseEnum.DEL_POST_METHODS.value,
             detail=True,
             permission_classes=[IsAuthenticated, ])
     def favorite(self, request, pk):
+        """Метод описыващий реализацию добавления рецепта
+        в избранное"""
         return add_delete_favorite_in_cart(
             user=request.user, method=request.method,
             is_favorite_or_is_in_cart=is_favorite, add_favorite_or_cart=add_favorite,
@@ -74,6 +75,8 @@ class RecipeViewSet(viewsets.ModelViewSet):
             detail=True,
             permission_classes=[IsAuthenticated, ],)
     def shopping_cart(self, request, pk):
+        """Метод описывающий реализацию добавления/удаления
+        рецепта в корзину"""
         return add_delete_favorite_in_cart(
             user=request.user, method=request.method,
             is_favorite_or_is_in_cart=is_in_cart, add_favorite_or_cart=add_in_cart,
@@ -84,10 +87,11 @@ class RecipeViewSet(viewsets.ModelViewSet):
             detail=False,
             permission_classes=[IsAuthenticated, ],)
     def download_shopping_cart(self, request, **kwargs):
+        """Метод описывающий реализацию скачивания рецепта в txt формате"""
         ingredients = (
             IngredientRecipe.objects.filter(recipe__in_cart=request.user.id)
-            .values("ingredient__name", "ingredient__measurement_unit")
-            .annotate(amount=Sum("amount"))
+            .values('ingredient__name', 'ingredient__measurement_unit')
+            .annotate(amount=Sum('amount'))
         )
         return get_ingredient_file(request=request, ingredients=ingredients)
 
@@ -138,6 +142,10 @@ class UserViewSet(DjoserUserViewSet):
         authors = user.subscribe.all()
         pages = self.paginate_queryset(authors)
         serializer = UserSubscribeSerializer(
-            pages, many=True, context={"request": request}
+            pages,
+            many=True,
+            context={
+                'request': request
+            }
         )
         return self.get_paginated_response(serializer.data)
