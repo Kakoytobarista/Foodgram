@@ -4,6 +4,7 @@ import enum
 class TagEnum(enum.Enum):
     TAG_VERBOSE_NAME = 'Тег'
     TAG_VERBOSE_NAME_PLURAL = 'Теги'
+    TAGS_NAME = 'tags'
 
     NAME_MAX_LENGTH = 100
     NAME_VERBOSE_NAME = 'Название тега'

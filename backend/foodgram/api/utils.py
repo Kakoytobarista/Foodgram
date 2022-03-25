@@ -5,6 +5,7 @@ from rest_framework.response import Response
 
 from api.serializers import RecipeFavoriteCartSerializer
 from enums.base_enum import BaseEnum
+from enums.user_enum import UserEnum
 from recipes.models import Recipe
 
 
@@ -19,6 +20,39 @@ def get_ingredient_file(request, ingredients):
     response = HttpResponse(shopping_list, content_type="text.txt; charset=utf-8")
     response["Content-Disposition"] = f"attachment; filename={filename}"
     return response
+
+
+def is_anonymous(user):
+    if user.is_anonymous:
+        return Response(status=status.HTTP_401_UNAUTHORIZED)
+
+
+def is_subscribe_on_yourself(user, id):
+    if user.id == int(id):
+        return Response(
+            data=UserEnum.SUBSCRIBE_ERROR_ON_YOURSELF.value,
+            status=status.HTTP_400_BAD_REQUEST,
+        )
+
+
+def add_subscribe(user, subscriber, serializer):
+    if user.subscribe.filter(username=subscriber.username).exists():
+        return Response(
+            UserEnum.SUBSCRIBE_ERROR_YET_SUBSCRIBED.value,
+            status=status.HTTP_400_BAD_REQUEST,
+        )
+    user.subscribe.add(subscriber)
+    return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+
+def del_subscriber(user, subscriber):
+    if not user.subscribe.filter(username=subscriber.username).exists():
+        return Response(
+            UserEnum.SUBSCRIBE_ERROR_DELETE_NOTHING.value,
+            status=status.HTTP_400_BAD_REQUEST,
+        )
+    user.subscribe.remove(subscriber)
+    return Response(status=status.HTTP_204_NO_CONTENT)
 
 
 def is_favorite(recipe, user):

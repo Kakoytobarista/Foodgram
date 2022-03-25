@@ -3,6 +3,8 @@ from rest_framework import serializers
 from rest_framework.fields import SerializerMethodField
 from rest_framework.validators import UniqueValidator
 
+from enums.ingredient_recipe_enum import IngredientRecipeEnum
+from enums.tag_enum import TagEnum
 from recipes.models import Ingredient, IngredientRecipe, Recipe, Tag
 from users.models import User
 
@@ -171,11 +173,11 @@ class RecipeCreateSerializer(RecipeMixin):
     def update(self, instance, validated_data):
         """Переопределенный метод update для корректного
         патча рецепта"""
-        if "tags" in validated_data:
+        if TagEnum.TAGS_NAME.value in validated_data:
             tags = validated_data.pop("tags")
             instance.tags.clear()
             instance.tags.add(*tags)
-        if "ingredients_amount" in validated_data:
+        if IngredientRecipeEnum.INGREDIENTS_AMOUNT.value in validated_data:
             ingredients_data = validated_data.pop("ingredients_amount")
             IngredientRecipe.objects.filter(recipe=instance).delete()
             self.add_ingredients(instance, ingredients_data)
@@ -187,7 +189,7 @@ class RecipeSerializer(RecipeMixin):
     tags = TagSerializer(read_only=True, many=True)
     ingredients = IngredientRecipeSerializer(read_only=True,
                                              many=True,
-                                             source="ingredients_amount")
+                                             source=IngredientRecipeEnum.INGREDIENTS_AMOUNT.value)
     image = Base64ImageField()
     author = UserSerializer(read_only=True)
     is_favorited = serializers.SerializerMethodField(read_only=True)

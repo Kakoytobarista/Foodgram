@@ -17,7 +17,8 @@ from api.serializers import (IngredientSerializer, RecipeSerializer,
                              RecipeCreateSerializer)
 from api.utils import (get_ingredient_file, is_in_cart, add_in_cart,
                        add_delete_favorite_in_cart, del_from_cart,
-                       is_favorite, add_favorite, del_from_favorite)
+                       is_favorite, add_favorite, del_from_favorite, is_anonymous, is_subscribe_on_yourself,
+                       add_subscribe, del_subscriber)
 from enums.base_enum import BaseEnum
 from enums.recipe_enum import RecipeEnum
 from enums.user_enum import UserEnum
@@ -48,7 +49,7 @@ class RecipeViewSet(viewsets.ModelViewSet):
     filterset_class = RecipeFilterSet
 
     def get_serializer_class(self):
-        if self.request.method in ('POST', 'PUT', 'PATCH'):
+        if self.request.method in BaseEnum.POST_UPDATE_METHODS.value:
             return RecipeCreateSerializer
         else:
             return RecipeSerializer
@@ -69,13 +70,9 @@ class RecipeViewSet(viewsets.ModelViewSet):
             delete_favorite_or_cart=del_from_favorite, add_error_message=RecipeEnum.ERROR_MESSAGE_IS_FAVORITE_YET.value,
             del_error_message=RecipeEnum.ERROR_MESSAGE_IS_NOT_FAVORITE.value, pk=pk)
 
-    @action(
-        methods=["delete", "post"],
-        detail=True,
-        permission_classes=[
-            IsAuthenticated,
-        ],
-    )
+    @action(methods=BaseEnum.DEL_POST_METHODS.value,
+            detail=True,
+            permission_classes=[IsAuthenticated, ],)
     def shopping_cart(self, request, pk):
         return add_delete_favorite_in_cart(
             user=request.user, method=request.method,
@@ -83,15 +80,9 @@ class RecipeViewSet(viewsets.ModelViewSet):
             delete_favorite_or_cart=del_from_cart, add_error_message=RecipeEnum.ERROR_MESSAGE_IS_IN_CART_YET.value,
             del_error_message=RecipeEnum.ERROR_MESSAGE_IS_NOT_IN_CART.value, pk=pk)
 
-    @action(
-        methods=[
-            "get",
-        ],
-        detail=False,
-        permission_classes=[
-            IsAuthenticated,
-        ],
-    )
+    @action(methods=[BaseEnum.GET_METHOD.value, ],
+            detail=False,
+            permission_classes=[IsAuthenticated, ],)
     def download_shopping_cart(self, request, **kwargs):
         ingredients = (
             IngredientRecipe.objects.filter(recipe__in_cart=request.user.id)
@@ -113,43 +104,24 @@ class UserViewSet(DjoserUserViewSet):
     add_serializer = UserSubscribeSerializer
     permission_classes = (IsAuthenticated,)
 
-    @action(
-        methods=(
-            "delete",
-            "post",
-        ),
-        detail=True,
-    )
+    @action(methods=BaseEnum.DEL_POST_METHODS.value,
+            detail=True, )
     def subscribe(self, request, id):
         """Добавляет/Удаляет связь между пользователями."""
         user = self.request.user
-        if user.is_anonymous:
-            return Response(status=status.HTTP_401_UNAUTHORIZED)
-        if user.id == int(id):
-            return Response(
-                data=UserEnum.SUBSCRIBE_ERROR_ON_YOURSELF.value,
-                status=status.HTTP_400_BAD_REQUEST,
-            )
+        if is_anonymous(user):
+            return is_anonymous(user)
+        if is_subscribe_on_yourself(user, id):
+            return is_subscribe_on_yourself(user, id)
         subscriber = get_object_or_404(User, id=id)
         serializer = UserSubscribeSerializer(subscriber, many=False)
         if request.method in BaseEnum.ADD_METHODS.value:
-            if user.subscribe.filter(username=subscriber.username).exists():
-                return Response(
-                    UserEnum.SUBSCRIBE_ERROR_YET_SUBSCRIBED.value,
-                    status=status.HTTP_400_BAD_REQUEST,
-                )
-            user.subscribe.add(subscriber)
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
+            return add_subscribe(user=user, subscriber=subscriber,
+                                 serializer=serializer)
         if request.method in BaseEnum.DEL_METHODS.value:
-            if not user.subscribe.filter(username=subscriber.username).exists():
-                return Response(
-                    UserEnum.SUBSCRIBE_ERROR_DELETE_NOTHING.value,
-                    status=status.HTTP_400_BAD_REQUEST,
-                )
-            user.subscribe.remove(subscriber)
-            return Response(status=status.HTTP_204_NO_CONTENT)
+            return del_subscriber(user=user, subscriber=subscriber)
 
-    @action(methods=("get",), detail=False)
+    @action(methods=(BaseEnum.GET_METHOD.value, ), detail=False)
     def subscriptions(self, request):
         """Список подписок пользоваетеля.
         Вызов метода через url: */users/subscriptions/.
@@ -161,8 +133,8 @@ class UserViewSet(DjoserUserViewSet):
                 Список подписок для авторизованного пользователя.
         """
         user = self.request.user
-        if user.is_anonymous:
-            return Response(status=status.HTTP_401_UNAUTHORIZED)
+        if is_anonymous(user):
+            return is_anonymous(user)
         authors = user.subscribe.all()
         pages = self.paginate_queryset(authors)
         serializer = UserSubscribeSerializer(
