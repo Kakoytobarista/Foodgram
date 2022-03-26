@@ -48,7 +48,7 @@ jobs:
         with:
           context: backend/.
           push: true
-          tags: heyaslan/foodgram:latest
+          tags: heyaslan/foodgram
 
   deploy:
     runs-on: ubuntu-latest
