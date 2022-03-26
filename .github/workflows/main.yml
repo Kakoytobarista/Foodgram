@@ -65,7 +65,7 @@ jobs:
           script: |
             cd foodgram-project-react/infra
             sudo docker-compose stop
-            sudo docker-compose rm -f web
+            sudo docker-compose rm -f infra_web_1
             sudo docker image rm heyaslan/foodgram:v1.1.3
             touch .env
             echo DB_ENGINE=${{ secrets.DB_ENGINE }} > .env
