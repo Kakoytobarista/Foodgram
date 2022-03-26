@@ -22,8 +22,6 @@ jobs:
           pip install -r backend/requirements.txt
 
       - name: Test with flake8 and django tests
-        run: |
-          python -m flake8 --ignore E24,W504 --select max-line-length=120
 
   build_and_push_to_docker_hub:
     name: Push Docker image to Docker Hub
@@ -48,7 +46,7 @@ jobs:
         with:
           context: backend/.
           push: true
-          tags: heyaslan/foodgram:v1.1.3
+          tags: heyaslan/foodgram:latest
 
   deploy:
     runs-on: ubuntu-latest
