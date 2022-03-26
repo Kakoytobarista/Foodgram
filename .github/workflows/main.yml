@@ -82,7 +82,6 @@ jobs:
     needs: deploy
 
     steps:
-
       - name: send message
         uses: appleboy/telegram-action@master
         with:
