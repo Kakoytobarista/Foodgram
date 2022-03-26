@@ -23,7 +23,7 @@ jobs:
 
       - name: Test with flake8 and django tests
         run: |
-          python -m flake8 --ignore E24,W504 max-line-length=120
+          python -m flake8 --ignore E24,W504 --select max-line-length=120
 
   build_and_push_to_docker_hub:
     name: Push Docker image to Docker Hub
