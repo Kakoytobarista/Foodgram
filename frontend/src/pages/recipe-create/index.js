@@ -174,7 +174,7 @@ const RecipeCreate = ({ onEdit }) => {
               return <div
                 className={styles.ingredientsAddedItem}
               >
-                <span className={styles.ingredientsAddedItemTitle}>{item.name}</span> <span>-</span> <span>{item.amount}{item.measurement_unit}</span> <span
+                <span className={styles.ingredientsAddedItemTitle}>{item.name}</span> <span>- </span> <span>{item.amount}{item.measurement_unit}</span> <span
                   className={styles.ingredientsAddedItemRemove}
                   onClick={_ => {
                     const recipeIngredientsUpdated = recipeIngredients.filter(ingredient => {
