@@ -14,6 +14,7 @@ from users.models import User
 
 
 def get_ingredient_file(request: Request, ingredients) -> HttpResponse:
+    """Метод для скачивания файла со списком покупок"""
     filename: str = f'{request.user.username}_shopping_list.txt'
     shopping_list: str = f'Список покупок для: {request.user.first_name}\n\n'
     for ing in ingredients:
@@ -27,11 +28,14 @@ def get_ingredient_file(request: Request, ingredients) -> HttpResponse:
 
 
 def is_anonymous(user: Request) -> Response:
+    """Метод проверяющий анонимный ли пользователь"""
     if user.is_anonymous:
         return Response(status=status.HTTP_401_UNAUTHORIZED)
 
 
 def is_subscribe_on_yourself(user: Request, id: str) -> Response:
+    """Проверяет является ли текущий пользователь, пользователем
+    на которого подписываешься"""
     if user.id == int(id):
         return Response(
             data=UserEnum.SUBSCRIBE_ERROR_ON_YOURSELF.value,
@@ -41,6 +45,7 @@ def is_subscribe_on_yourself(user: Request, id: str) -> Response:
 
 def add_subscribe(user: Request, subscriber: User,
                   serializer: UserSubscribeSerializer) -> Response:
+    """Метод для совершения подписки на пользвотеля"""
     if user.subscribe.filter(username=subscriber.username).exists():
         return Response(
             UserEnum.SUBSCRIBE_ERROR_YET_SUBSCRIBED.value,
@@ -52,6 +57,7 @@ def add_subscribe(user: Request, subscriber: User,
 
 def del_subscriber(user: Request,
                    subscriber: User) -> Response:
+    """Метод для отписки от пользователя"""
     if not user.subscribe.filter(username=subscriber.username).exists():
         return Response(
             UserEnum.SUBSCRIBE_ERROR_DELETE_NOTHING.value,
@@ -62,26 +68,32 @@ def del_subscriber(user: Request,
 
 
 def is_favorite(recipe: Recipe, user: User) -> bool:
+    """Метод проверяющий находится ли пользователь в подписанных"""
     return recipe.favorite.filter(username=user.username)
 
 
 def is_in_cart(recipe: Recipe, user: User) -> bool:
+    """Метод для проверки нахождения продукта в корзине"""
     return recipe.in_cart.filter(username=user.username)
 
 
 def add_favorite(recipe: Recipe, user: User):
+    """Метод для добавления рецепта в избранное"""
     recipe.favorite.add(user)
 
 
 def add_in_cart(recipe: Recipe, user: User):
+    """метод для добавления рецепта в корзину"""
     recipe.in_cart.add(user)
 
 
 def del_from_favorite(recipe: Recipe, user: User):
+    """Метод для удаления рецепта из избранного"""
     recipe.favorite.remove(user)
 
 
 def del_from_cart(recipe: Recipe, user: User):
+    """Метод для удаления рецепта из корзины"""
     recipe.in_cart.remove(user)
 
 
@@ -93,6 +105,7 @@ def add_delete_favorite_in_cart(user: User,
                                 add_error_message: str,
                                 del_error_message: str,
                                 pk: int) -> Response:
+    """Метод для Добавления/Удаления рецепта из корзины/избранного"""
     if user.is_anonymous:
         return Response(status=status.HTTP_401_UNAUTHORIZED)
     recipe = get_object_or_404(Recipe, id=pk)

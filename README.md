@@ -1,5 +1,5 @@
 # Проект Foodgram
-
+![example workflow](https://github.com/HeyAslan/foodgram-project-react/actions/main.yml/badge.svg)
 ### http://foodgram.myvnc.com/recipes
 
 Дипломный проект курса Python-разработчик от Яндекс.Практикум.
