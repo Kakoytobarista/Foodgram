@@ -12,6 +12,12 @@
 Python 3.8.5, Django 3.0.5, Django REST framework 3.12.4
 PostgreSQL, Docker, Gunicorn, Nginx
 
+## Схема моделей, views, serializers в Miro:
+
+```  
+https://miro.com/app/board/uXjVOJwNSYQ=/
+```  
+
 ### Локальный запуск проекта:
   
 Клонировать репозиторий и перейти в директорию infra/:  
