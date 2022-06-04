@@ -1,5 +1,5 @@
 # Проект Foodgram
-![example workflow](https://github.com/HeyAslan/foodgram-project-react/actions/main.yml/badge.svg)
+![example workflow](https://github.com/HeyAslan/foodgram-project-react/actions/workflows/main.yml/badge.svg)
 ### http://foodgram.myvnc.com/recipes
 
 Дипломный проект курса Python-разработчик от Яндекс.Практикум
@@ -11,6 +11,12 @@
 ### Технологии:
 Python 3.8.5, Django 3.0.5, Django REST framework 3.12.4
 PostgreSQL, Docker, Gunicorn, Nginx
+
+## Схема моделей, views, serializers в Miro:
+
+```  
+https://miro.com/app/board/uXjVOJwNSYQ=/
+```  
 
 ### Локальный запуск проекта:
   
