@@ -14,9 +14,9 @@ PostgreSQL, Docker, Gunicorn, Nginx
 
 ## Схема моделей, views, serializers в Miro:
 
-```  
+```
 https://miro.com/app/board/uXjVOJwNSYQ=/
-```  
+```
 
 ### Локальный запуск проекта:
   
