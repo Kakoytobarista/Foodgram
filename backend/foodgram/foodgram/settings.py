@@ -19,7 +19,7 @@ SECRET_KEY = os.getenv('SECRET_KEY', default='9n_zkvx#y94i3#w1ci-rxb1yjhxd96+a1$
 
 DEBUG = False
 
-ALLOWED_HOSTS = ['217.28.231.1', '127.0.0.1', 'localhost', 'foodgram.myvnc.com']
+ALLOWED_HOSTS = ['51.250.89.140', '127.0.0.1', 'localhost', 'foodgram.myvnc.com']
 
 
 INSTALLED_APPS = [
