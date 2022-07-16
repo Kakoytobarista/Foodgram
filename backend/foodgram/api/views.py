@@ -6,7 +6,6 @@ from rest_framework.decorators import action
 from rest_framework.filters import SearchFilter
 from rest_framework.generics import get_object_or_404
 from rest_framework.permissions import AllowAny, IsAuthenticated
-from rest_framework.response import Response
 
 from api.filters import RecipeFilterSet
 from api.mixins import ListRetrieveViewSet
