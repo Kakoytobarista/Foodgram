@@ -3,8 +3,8 @@ import enum
 
 class BaseEnum(enum.Enum):
     ADD_METHODS = ('GET', 'POST',)
-    GET_METHOD = 'get'
+    GET_METHOD = 'GET'
     POST_UPDATE_METHODS = 'POST', 'PUT', 'PATCH',
     DEL_METHODS = ('DELETE',)
-    DEL_POST_METHODS = ('delete', 'post')
+    DEL_POST_METHODS = ('DELETE', 'POST')
     POST_METHOD = ('POST', )
