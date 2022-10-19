@@ -19,7 +19,7 @@ SECRET_KEY = os.getenv('SECRET_KEY', default='9n_zkvx#y94i3#w1ci-rxb1yjhxd96+a1$
 
 DEBUG = False
 
-ALLOWED_HOSTS = ['51.250.76.157', '127.0.0.1', 'localhost', 'foodgram.onthewifi.com']
+ALLOWED_HOSTS = ['137.184.12.68', '127.0.0.1', 'localhost', 'aslangram.ddns.net']
 
 
 INSTALLED_APPS = [
