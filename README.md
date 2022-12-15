@@ -1,13 +1,12 @@
 # Проект Foodgram
 ![example workflow](https://github.com/HeyAslan/foodgram-project-react/actions/workflows/main.yml/badge.svg)
-### http://foodgram.myvnc.com/recipes
+### http://aslangram.ddns.net/recipes
 
 «Продуктовый помощник» — сайт, на котором можно публиковать рецепты и подписываться на 
 публикации других авторов. Понравившиеся рецепты можно добавить в 
 избранное. Сервис «Список покупок» позволяет скачать список продуктов, которые 
 понадобятся для приготовления выбранных блюд.
 
-После запуска проекта документация доступна по адресу: http://localhost/redoc/
 
 ### Технологии:
 Python 3.8.5, Django 3.0.5, Django REST framework 3.12.4
