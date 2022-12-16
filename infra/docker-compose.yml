@@ -33,8 +33,12 @@ services:
     volumes:
       - ./nginx.conf:/etc/nginx/conf.d/default.conf
       - ./frontend/build:/usr/share/nginx/html/
+
+      - /etc/letsencrypt/:/etc/letsencrypt
+
       - ./docs/redoc/:/usr/share/nginx/html/api/docs/redoc/
       - ./docs/:/usr/share/nginx/html/api/docs/
+
       - static_value:/var/html/static/
       - media_value:/var/html/media/
     depends_on:
