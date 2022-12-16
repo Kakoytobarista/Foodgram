@@ -68,7 +68,7 @@ jobs:
           script: |
             ls
             pwd
-            cd infra
+            cd home/foodgram-project-react/infra
             sudo docker-compose stop
             sudo docker-compose rm -f infra_web_1
             sudo docker image rm heyaslan/foodgram:v1.1.3
