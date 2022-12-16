@@ -58,7 +58,8 @@ class Recipe(models.Model):
         verbose_name=RecipeEnum.NAME_VERBOSE_NAME.value,
     )
     image = models.ImageField(verbose_name=RecipeEnum.IMAGE_VERBOSE_NAME.value)
-    text = models.TextField(verbose_name=RecipeEnum.TEXT_VERBOSE_NAME.value)
+    text = models.TextField(verbose_name=RecipeEnum.TEXT_VERBOSE_NAME.value,
+                            max_length=RecipeEnum.TEXT_MAX_LENGTH.value)
     ingredients = models.ManyToManyField(
         to=Ingredient,
         verbose_name=RecipeEnum.INGREDIENTS_VERBOSE_NAME.value,

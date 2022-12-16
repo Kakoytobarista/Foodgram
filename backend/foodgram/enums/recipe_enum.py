@@ -16,6 +16,7 @@ class RecipeEnum(enum.Enum):
     IMAGE_VERBOSE_NAME = 'Картинка рецепта'
 
     TEXT_VERBOSE_NAME = 'Текст рецепта'
+    TEXT_MAX_LENGTH = 1000
 
     INGREDIENTS_VERBOSE_NAME = 'Ингридиенты'
     INGREDIENTS_RELATED_NAE = 'ingredients'
