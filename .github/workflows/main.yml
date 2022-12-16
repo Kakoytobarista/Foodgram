@@ -1,7 +1,7 @@
 name: Django-app workflow
 
 on:
-  push
+  push:
     branches:
       - final_deploy
 
