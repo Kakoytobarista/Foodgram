@@ -66,7 +66,9 @@ jobs:
           username: ${{ secrets.USER }}
           key: ${{ secrets.SSH_KEY }}
           script: |
-            cd foodgram-project-react/infra
+            ls
+            pwd
+            cd infra
             sudo docker-compose stop
             sudo docker-compose rm -f infra_web_1
             sudo docker image rm heyaslan/foodgram:v1.1.3
