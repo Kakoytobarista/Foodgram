@@ -42,8 +42,8 @@ services:
       - db
       - frontend
 
-
 volumes:
   postgres_data:
   static_value:
   media_value:
+
