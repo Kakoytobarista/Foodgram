@@ -7,7 +7,7 @@ COPY /foodgram .
 CMD [ "sh", "-c", \
 "python3 manage.py migrate \
 && \
-python3 manage.py collectstatic --noinput && python manage.py loaddata finally_data.json \
+python3 manage.py collectstatic --noinput \
 && \
 gunicorn foodgram.wsgi:application --bind 0:8000" \
 ]
