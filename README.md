@@ -3,7 +3,6 @@
 ![Workflow](https://github.com/yankovskaya-ktr/foodgram-project-react/actions/workflows/foodgram_workflow.yml/badge.svg)
 
 <br>
-Link on host: http://aslangram.ddns.net/recipes
 
 ___
 
@@ -21,12 +20,16 @@ Technologies:
 * Django 3.0.5
 * Django REST framework 3.12.4
 * PostgreSQL
-* Docker
+* Docker/Docker-compose
 * Gunicorn
 * Nginx
+* HTML/CSS/JS
+* React
+* Redax
 
 ## Local Project Launch:
-### Clone the repository and navigate to the infra/ directory:
+___
+Clone the repository and navigate to the infra/ directory:
   
 ```  
 > git clone https://github.com/yankovskaya-ktr/foodgram-project-react.git
@@ -36,39 +39,32 @@ Technologies:
 Create a .env file based on the .env.template:
 
 ```
-> cp .env.template .env
+> cd infra
+> chmod +x ./create_env_file.sh
+> ./create_env_file.sh
+
 ```
 Launch the application:
 
 ``` 
-> docker-compose up
+> docker-compose up -d --build
 ``` 
-Perform migrations:
+### Credentials:
 
-``` 
-> docker-compose exec web python manage.py migrate --noinput
-``` 
+```username: john```
 
-Create a superuser:
+```email: john@gmail.com```
 
+```password: johntest```
 
-``` 
-> docker-compose exec web python manage.py createsuperuser
-``` 
-
-Import data into the database:
-  
-```  
-> docker-compose exec web python manage.py import_data
-```
 
 ### Resources:
 
-Main page:
+#### Main page:
 ```
-http://localhost/
+> http://localhost/
 ```
 Documentation API:
 ```
-http://localhost/api/docs/redoc.html
+> http://localhost/api/docs/redoc.html
 ```
