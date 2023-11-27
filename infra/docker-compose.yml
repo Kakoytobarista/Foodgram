@@ -1,11 +1,12 @@
 version: '3.3'
 services:
+
   db:
     image: postgres:13.0-alpine
-    ports:
-      - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - TZ=UTC
     env_file:
       - ./.env
 

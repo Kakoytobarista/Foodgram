@@ -46,12 +46,12 @@ const HomePage = ({ updateOrders }) => {
   return <Main>
     <Container>
       <MetaTags>
-        <title>Рецепты</title>
-        <meta name="description" content="Продуктовый помощник - Рецепты" />
-        <meta property="og:title" content="Рецепты" />
+        <title>Recipes</title>
+        <meta name="description" content="Grocery Assistant- Recipes" />
+        <meta property="og:title" content="Recipes" />
       </MetaTags>
       <div className={styles.title}>
-        <Title title='Рецепты' />
+        <Title title='Recipes' />
         <CheckboxGroup
           values={tagsValue}
           handleChange={value => {

@@ -36,7 +36,7 @@ class RecipeAdmin(admin.ModelAdmin):
             result += recipes[i].favorite.count()
         return result
 
-    favorites_count.short_description = 'Число добавлений в избранное'
+    favorites_count.short_description = 'Total products in card'
 
 
 class TagAdmin(admin.ModelAdmin):
