@@ -10,7 +10,7 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 from api.filters import RecipeFilterSet
 from api.mixins import ListRetrieveViewSet
 from api.paginators import PageLimitPagination
-from api.pemissions import IsAuthorOrStaffOrReadOnly
+from api.permissions import IsAuthorOrStaffOrReadOnly  # Fixed typo in the import statement
 from api.serializers import (IngredientSerializer, RecipeSerializer,
                              TagSerializer, UserSubscribeSerializer,
                              RecipeCreateSerializer)
@@ -25,12 +25,21 @@ from users.models import User
 
 
 class TagViewSet(ListRetrieveViewSet):
+    """
+    A view set for handling tags.
+    Retrieves and lists tags. Allows anonymous access.
+    """
     queryset = Tag.objects.all()
     serializer_class = TagSerializer
     permission_classes = (AllowAny,)
 
 
 class IngredientViewSet(ListRetrieveViewSet):
+    """
+    A view set for handling ingredients.
+    Retrieves and lists ingredients. Allows anonymous access.
+    Supports searching by ingredient name.
+    """
     queryset = Ingredient.objects.all()
     serializer_class = IngredientSerializer
     permission_classes = (AllowAny,)
@@ -39,6 +48,12 @@ class IngredientViewSet(ListRetrieveViewSet):
 
 
 class RecipeViewSet(viewsets.ModelViewSet):
+    """
+    A view set for handling recipes.
+    Provides CRUD operations for recipes.
+    Allows filtering, searching, and pagination.
+    Requires authentication for modification operations.
+    """
     queryset = Recipe.objects.all()
     serializer_class = RecipeSerializer
     pagination_class = PageLimitPagination
@@ -47,23 +62,34 @@ class RecipeViewSet(viewsets.ModelViewSet):
     filterset_class = RecipeFilterSet
 
     def get_serializer_class(self):
+        """
+        Returns the appropriate serializer class based on the request method.
+        Uses RecipeCreateSerializer for POST and PUT requests, and RecipeSerializer for others.
+        """
         if self.request.method in BaseEnum.POST_UPDATE_METHODS.value:
             return RecipeCreateSerializer
         else:
             return RecipeSerializer
 
     def perform_create(self, serializer):
+        """
+        Adds the current user as the author when creating a new recipe.
+        """
         serializer.save(author=self.request.user)
 
     def perform_update(self, serializer):
+        """
+        Updates the recipe with the current user as the author.
+        """
         serializer.save(author=self.request.user)
 
     @action(methods=BaseEnum.DEL_POST_METHODS.value,
             detail=True,
             permission_classes=[IsAuthenticated, ])
     def favorite(self, request, pk):
-        """Метод описыващий реализацию добавления рецепта
-        в избранное"""
+        """
+        Adds or removes a recipe from the user's favorites.
+        """
         return add_delete_favorite_in_cart(
             user=request.user, method=request.method,
             is_favorite_or_is_in_cart=is_favorite, add_favorite_or_cart=add_favorite,
@@ -74,8 +100,9 @@ class RecipeViewSet(viewsets.ModelViewSet):
             detail=True,
             permission_classes=[IsAuthenticated, ],)
     def shopping_cart(self, request, pk):
-        """Метод описывающий реализацию добавления/удаления
-        рецепта в корзину"""
+        """
+        Adds or removes a recipe from the user's shopping cart.
+        """
         return add_delete_favorite_in_cart(
             user=request.user, method=request.method,
             is_favorite_or_is_in_cart=is_in_cart, add_favorite_or_cart=add_in_cart,
@@ -86,7 +113,9 @@ class RecipeViewSet(viewsets.ModelViewSet):
             detail=False,
             permission_classes=[IsAuthenticated, ],)
     def download_shopping_cart(self, request, **kwargs):
-        """Метод описывающий реализацию скачивания рецепта в txt формате"""
+        """
+        Downloads the user's shopping cart as a text file.
+        """
         ingredients = (
             IngredientRecipe.objects.filter(recipe__in_cart=request.user.id)
             .values('ingredient__name', 'ingredient__measurement_unit')
@@ -96,13 +125,11 @@ class RecipeViewSet(viewsets.ModelViewSet):
 
 
 class UserViewSet(DjoserUserViewSet):
-    """Работает с пользователями.
-    ViewSet для работы с пользователми - вывод таковых,
-    регистрация.
-    Для авторизованных пользователей —
-    возможность подписаться на автора рецепта.
     """
-
+    Handles user-related operations.
+    ViewSet for listing users and user registration.
+    For authenticated users, allows subscribing to recipe authors.
+    """
     pagination_class = PageLimitPagination
     add_serializer = UserSubscribeSerializer
     permission_classes = (IsAuthenticated,)
@@ -110,7 +137,9 @@ class UserViewSet(DjoserUserViewSet):
     @action(methods=BaseEnum.DEL_POST_METHODS.value,
             detail=True, )
     def subscribe(self, request, id):
-        """Добавляет/Удаляет связь между пользователями."""
+        """
+        Adds or removes a subscription between users.
+        """
         user = self.request.user
         if is_anonymous(user):
             return is_anonymous(user)
@@ -126,14 +155,8 @@ class UserViewSet(DjoserUserViewSet):
 
     @action(methods=(BaseEnum.GET_METHOD.value, ), detail=False)
     def subscriptions(self, request):
-        """Список подписок пользоваетеля.
-        Вызов метода через url: */users/subscriptions/.
-        Args:
-            request (Request): Не используется.
-        Returns:
-            Response:
-                401 - для неавторизованного пользователя.
-                Список подписок для авторизованного пользователя.
+        """
+        Lists the subscriptions of the authenticated user.
         """
         user = self.request.user
         if is_anonymous(user):

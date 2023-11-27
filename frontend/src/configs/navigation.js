@@ -1,22 +1,22 @@
 export default [
   {
-    title: 'Рецепты',
+    title: 'Recipes',
     href: '/recipes',
     auth: false
   },{
-    title: 'Мои подписки',
+    title: 'My Subscriptions',
     href: '/subscriptions',
     auth: true
   },{
-    title: 'Создать рецепт',
+    title: 'Create recipe',
     href: '/recipes/create',
     auth: true
   },{
-    title: 'Избранное',
+    title: 'Favourite',
     href: '/favorites',
     auth: true
   }, {
-    title: 'Список покупок',
+    title: 'List of products',
     href: '/cart',
     auth: true
   }

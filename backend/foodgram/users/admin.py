@@ -1,18 +1,25 @@
 from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin as DjangoUserAdmin
 
 from .models import User
 
 
-class UserAdmin(admin.ModelAdmin):
+class CustomUserAdmin(DjangoUserAdmin):
+    """
+    Admin class for custom User model.
+
+    Attributes:
+    - list_display (tuple): Fields to be displayed in the list view.
+    - list_editable (tuple): Fields that can be edited directly in the list view.
+    """
+
     list_display = (
         'username',
-        'password',
         'email',
         'bio',
         'role',
         'first_name',
         'last_name',
-
     )
     list_editable = (
         'first_name',
@@ -22,4 +29,4 @@ class UserAdmin(admin.ModelAdmin):
     )
 
 
-admin.site.register(User, UserAdmin)
+admin.site.register(User, CustomUserAdmin)

@@ -12,40 +12,35 @@ from enums.user_enum import UserEnum
 from recipes.models import Recipe
 from users.models import User
 
-
 def get_ingredient_file(request: Request, ingredients) -> HttpResponse:
-    """Метод для скачивания файла со списком покупок"""
+    """Method for downloading a file with the shopping list."""
     filename: str = f'{request.user.username}_shopping_list.txt'
-    shopping_list: str = f'Список покупок для: {request.user.first_name}\n\n'
+    shopping_list: str = f'Shopping list for: {request.user.first_name}\n\n'
     for ing in ingredients:
         shopping_list += f'{ing["ingredient__name"]}: {ing["amount"]} {ing["ingredient__measurement_unit"]}\n'
 
-    shopping_list += '\n\nПосчитано в Foodgram'
+    shopping_list += '\n\nCalculated in Foodgram'
 
     response = HttpResponse(shopping_list, content_type='text.txt; charset=utf-8')
     response['Content-Disposition'] = f'attachment; filename={filename}'
     return response
 
-
 def is_anonymous(user: Request) -> Response:
-    """Метод проверяющий анонимный ли пользователь"""
+    """Method to check if the user is anonymous."""
     if user.is_anonymous:
         return Response(status=status.HTTP_401_UNAUTHORIZED)
 
-
 def is_subscribe_on_yourself(user: Request, id: str) -> Response:
-    """Проверяет является ли текущий пользователь, пользователем
-    на которого подписываешься"""
+    """Checks if the current user is the one being subscribed to."""
     if user.id == int(id):
         return Response(
             data=UserEnum.SUBSCRIBE_ERROR_ON_YOURSELF.value,
             status=status.HTTP_400_BAD_REQUEST,
         )
 
-
 def add_subscribe(user: Request, subscriber: User,
                   serializer: UserSubscribeSerializer) -> Response:
-    """Метод для совершения подписки на пользвотеля"""
+    """Method to subscribe to a user."""
     if user.subscribe.filter(username=subscriber.username).exists():
         return Response(
             UserEnum.SUBSCRIBE_ERROR_YET_SUBSCRIBED.value,
@@ -54,10 +49,9 @@ def add_subscribe(user: Request, subscriber: User,
     user.subscribe.add(subscriber)
     return Response(serializer.data, status=status.HTTP_201_CREATED)
 
-
 def del_subscriber(user: Request,
                    subscriber: User) -> Response:
-    """Метод для отписки от пользователя"""
+    """Method to unsubscribe from a user."""
     if not user.subscribe.filter(username=subscriber.username).exists():
         return Response(
             UserEnum.SUBSCRIBE_ERROR_DELETE_NOTHING.value,
@@ -66,36 +60,29 @@ def del_subscriber(user: Request,
     user.subscribe.remove(subscriber)
     return Response(status=status.HTTP_204_NO_CONTENT)
 
-
 def is_favorite(recipe: Recipe, user: User) -> bool:
-    """Метод проверяющий находится ли пользователь в подписанных"""
+    """Method to check if the user has favorited a recipe."""
     return recipe.favorite.filter(username=user.username)
 
-
 def is_in_cart(recipe: Recipe, user: User) -> bool:
-    """Метод для проверки нахождения продукта в корзине"""
+    """Method to check if the recipe is in the user's shopping cart."""
     return recipe.in_cart.filter(username=user.username)
 
-
 def add_favorite(recipe: Recipe, user: User):
-    """Метод для добавления рецепта в избранное"""
+    """Method to add a recipe to favorites."""
     recipe.favorite.add(user)
 
-
 def add_in_cart(recipe: Recipe, user: User):
-    """метод для добавления рецепта в корзину"""
+    """Method to add a recipe to the shopping cart."""
     recipe.in_cart.add(user)
 
-
 def del_from_favorite(recipe: Recipe, user: User):
-    """Метод для удаления рецепта из избранного"""
+    """Method to remove a recipe from favorites."""
     recipe.favorite.remove(user)
 
-
 def del_from_cart(recipe: Recipe, user: User):
-    """Метод для удаления рецепта из корзины"""
+    """Method to remove a recipe from the shopping cart."""
     recipe.in_cart.remove(user)
-
 
 def add_delete_favorite_in_cart(user: User,
                                 method: Union[list, tuple],
@@ -105,7 +92,7 @@ def add_delete_favorite_in_cart(user: User,
                                 add_error_message: str,
                                 del_error_message: str,
                                 pk: int) -> Response:
-    """Метод для Добавления/Удаления рецепта из корзины/избранного"""
+    """Method to Add/Delete a recipe from favorites/shopping cart."""
     if user.is_anonymous:
         return Response(status=status.HTTP_401_UNAUTHORIZED)
     recipe = get_object_or_404(Recipe, id=pk)

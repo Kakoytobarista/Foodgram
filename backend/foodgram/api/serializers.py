@@ -10,9 +10,12 @@ from users.models import User
 
 from api.mixins import RecipeMixin
 
-
 class UserSerializer(serializers.ModelSerializer):
-    """Сериализатор для использования с моделью User."""
+    """Serializer for working with the User model.
+
+    Attributes:
+        is_subscribed (SerializerMethodField): A method field to determine if the current user is subscribed to the viewed user.
+    """
     username = serializers.CharField(
         required=True, validators=[UniqueValidator(queryset=User.objects.all())]
     )
@@ -36,13 +39,15 @@ class UserSerializer(serializers.ModelSerializer):
         read_only_fields = ('is_subscribed',)
 
     def get_is_subscribed(self, obj):
-        """Проверка подписки пользователей.
-        Определяет - подписан ли текущий пользователь
-        на просматриваемого пользователя.
+        """Check user subscription.
+
+        Determines whether the current user is subscribed to the viewed user.
+
         Args:
-            obj (User): Пользователь, на которого проверяется подписка.
+            obj (User): The user to check for subscription.
+
         Returns:
-            bool: True, если подписка есть. Во всех остальных случаях False.
+            bool: True if there is a subscription, False otherwise.
         """
         user = self.context.get('request').user
         if user.is_anonymous or (user == obj):
@@ -50,11 +55,13 @@ class UserSerializer(serializers.ModelSerializer):
         return user.subscribe.filter(id=obj.id).exists()
 
     def create(self, validated_data):
-        """Создаёт нового пользователя с запрошенными полями.
+        """Create a new user with the requested fields.
+
         Args:
-            validated_data (dict): Полученные проверенные данные.
+            validated_data (dict): Validated data received.
+
         Returns:
-            User: Созданный пользователь.
+            User: The created user.
         """
         user = User(
             email=validated_data['email'],
@@ -66,29 +73,21 @@ class UserSerializer(serializers.ModelSerializer):
         user.save()
         return user
 
-
 class ShortRecipeSerializer(serializers.ModelSerializer):
-    """Сериализатор для модели Recipe.
-    Определён укороченный набор полей для некоторых эндпоинтов.
-    """
-
+    """Serializer for the Recipe model with a shortened set of fields."""
     class Meta:
         model = Recipe
         fields = 'id', 'name', 'image', 'cooking_time'
         read_only_fields = ('__all__',)
 
-
 class TagSerializer(serializers.ModelSerializer):
-    """Сериализатор для вывода тэгов.
-    """
-
+    """Serializer for displaying tags."""
     class Meta:
         model = Tag
         fields = '__all__'
 
-
 class IngredientSerializer(serializers.ModelSerializer):
-    """Сериализатор для модели Ingredient"""
+    """Serializer for the Ingredient model."""
     measurement_unit = serializers.CharField(required=False)
     name = serializers.CharField(required=False)
 
@@ -96,9 +95,9 @@ class IngredientSerializer(serializers.ModelSerializer):
         model = Ingredient
         fields = 'id', 'name', 'measurement_unit'
 
-
 class IngredientRecipeSerializer(serializers.ModelSerializer):
-    """Сериализатор для атрибута класса RecipeSerializer"""
+    """Serializer for the RecipeSerializer class attribute."""
+
     id = serializers.PrimaryKeyRelatedField(
         source='ingredient', queryset=Ingredient.objects.all()
     )
@@ -113,15 +112,28 @@ class IngredientRecipeSerializer(serializers.ModelSerializer):
 
     @staticmethod
     def validate_amount(value):
+        """Validate the amount of ingredients.
+
+        Validates that the amount of ingredients is not negative.
+
+        Args:
+            value (int): The amount of ingredients.
+
+        Raises:
+            serializers.ValidationError: If the amount is negative.
+
+        Returns:
+            int: The validated amount.
+        """
         if value <= 0:
             raise serializers.ValidationError(
-                'Нельзя указывать отрицательное количество ингредиентов.'
+                'Negative ingredient amounts are not allowed.'
             )
         return value
 
-
 class RecipeCreateSerializer(RecipeMixin):
-    """Сериализатор для модели Recipe"""
+    """Serializer for the Recipe model."""
+
     author = UserSerializer(read_only=True)
     tags = serializers.PrimaryKeyRelatedField(
         many=True,
@@ -150,8 +162,7 @@ class RecipeCreateSerializer(RecipeMixin):
 
     @staticmethod
     def add_ingredients(recipe, ingredients_data):
-        """Метод для добавления строк ингридиентов в
-        таблицу IngredientRecipe"""
+        """Method to add ingredient rows to the IngredientRecipe table."""
         for ingredient_data in ingredients_data:
             IngredientRecipe.objects.create(
                 recipe=recipe,
@@ -160,8 +171,7 @@ class RecipeCreateSerializer(RecipeMixin):
             )
 
     def create(self, validated_data):
-        """Переопределенный метод create для корректного
-        добавления ингридиентов и тегов"""
+        """Overridden create method for correctly adding ingredients and tags."""
         ingredients_data = validated_data.pop('ingredients_amount')
         tags = validated_data.pop('tags')
         recipe = Recipe.objects.create(**validated_data)
@@ -170,8 +180,7 @@ class RecipeCreateSerializer(RecipeMixin):
         return recipe
 
     def update(self, instance, validated_data):
-        """Переопределенный метод update для корректного
-        патча рецепта"""
+        """Overridden update method for correctly patching the recipe."""
         if TagEnum.TAGS_NAME.value in validated_data:
             tags = validated_data.pop('tags')
             instance.tags.clear()
@@ -184,7 +193,8 @@ class RecipeCreateSerializer(RecipeMixin):
 
 
 class RecipeSerializer(RecipeMixin):
-    """Сериализатор для чтения рецептов"""
+    """Serializer for reading recipes."""
+
     tags = TagSerializer(read_only=True, many=True)
     ingredients = IngredientRecipeSerializer(read_only=True,
                                              many=True,
@@ -211,7 +221,7 @@ class RecipeSerializer(RecipeMixin):
 
 
 class RecipeFavoriteCartSerializer(serializers.ModelSerializer):
-    """Сериализатор для добавления в корзину/в избранное рецепта"""
+    """Serializer for adding a recipe to the cart/favorites."""
 
     class Meta:
         model = Recipe
@@ -219,7 +229,8 @@ class RecipeFavoriteCartSerializer(serializers.ModelSerializer):
 
 
 class UserSubscribeSerializer(UserSerializer):
-    """Сериализатор для вывода авторов на которых подписан текущий пользователь."""
+    """Serializer for displaying authors subscribed by the current user."""
+
     recipes = ShortRecipeSerializer(many=True,
                                     read_only=True)
     recipes_count = SerializerMethodField()
@@ -240,9 +251,10 @@ class UserSubscribeSerializer(UserSerializer):
 
     @staticmethod
     def get_is_subscribed(*args):
-        """Проверка подписки пользователей.
-        Переопределённый метод родительского класса для уменьшения нагрузки,
-        так как в текущей реализации всегда вернёт `True`.
+        """Check user subscription.
+
+        Overridden method of the parent class to reduce the load, as it will always return `True`.
+
         Returns:
             bool: True
         """
@@ -250,10 +262,12 @@ class UserSubscribeSerializer(UserSerializer):
 
     @staticmethod
     def get_recipes_count(obj):
-        """Показывает общее количество рецептов у каждого автора.
+        """Show the total number of recipes for each author.
+
         Args:
-            obj (User): Запрошенный пользователь.
+            obj (User): Requested user.
+
         Returns:
-            int: Количество рецептов созданных запрошенным пользователем.
+            int: Number of recipes created by the requested user.
         """
         return obj.recipes.count()
