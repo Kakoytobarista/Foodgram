@@ -31,7 +31,7 @@ const Card = ({
         />
         <TagsContainer tags={tags} />
         <div className={styles.card__time}>
-          <Icons.ClockIcon /> {cooking_time} мин.
+          <Icons.ClockIcon /> {cooking_time} minutes
         </div>
         <div className={styles.card__author}>
           <Icons.UserIcon /> <LinkComponent

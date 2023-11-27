@@ -30,7 +30,7 @@ const Subscription = ({ email, first_name, last_name, username, removeSubscripti
                   {recipe.name}
                 </h3>
                 <p className={styles.subscriptionRecipeText}>
-                  <Icons.ClockIcon />{recipe.cooking_time} мин.
+                  <Icons.ClockIcon />{recipe.cooking_time} minutes
                 </p>
               </div>
             } />

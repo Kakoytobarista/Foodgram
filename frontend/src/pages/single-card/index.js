@@ -55,7 +55,7 @@ const SingleCard = ({ loadItem, updateOrders }) => {
     <Container>
       <MetaTags>
         <title>{name}</title>
-        <meta name="description" content={`Продуктовый помощник - ${name}`} />
+        <meta name="description" content={`Grocery Assistant - ${name}`} />
         <meta property="og:title" content={name} />
       </MetaTags>
       <div className={styles['single-card']}>
@@ -74,7 +74,7 @@ const SingleCard = ({ loadItem, updateOrders }) => {
           </div>
           <TagsContainer tags={tags} />
           <div>
-            <p className={styles['single-card__text']}><Icons.ClockIcon /> {cooking_time} мин.</p>
+            <p className={styles['single-card__text']}><Icons.ClockIcon /> {cooking_time} minutes.</p>
             <p className={styles['single-card__text_with_link']}>
               <div className={styles['single-card__text']}>
                 <Icons.UserIcon /> <LinkComponent
@@ -85,7 +85,7 @@ const SingleCard = ({ loadItem, updateOrders }) => {
               </div>
               {(userContext || {}).id === author.id && <LinkComponent
                 href={`${url}/edit`}
-                title='Редактировать рецепт'
+                title='Edit recipe'
                 className={styles['single-card__edit']}
               />}
             </p>
@@ -99,7 +99,7 @@ const SingleCard = ({ loadItem, updateOrders }) => {
               }}
             >
               
-            {is_in_shopping_cart ? <><Icons.DoneIcon color="#4A61DD"/>Рецепт добавлен</> : <><Icons.PlusIcon /> Добавить в покупки</>}
+            {is_in_shopping_cart ? <><Icons.DoneIcon color="#4A61DD"/>Recipe added</> : <><Icons.PlusIcon /> Add to card</>}
             </Button>}
             {(userContext || {}).id !== author.id && authContext && <Button
               className={styles['single-card__button']}
@@ -108,7 +108,7 @@ const SingleCard = ({ loadItem, updateOrders }) => {
                 handleSubscribe({ author_id: author.id, toSubscribe: !author.is_subscribed })
               }}
             >
-              {author.is_subscribed ? 'Отписаться от автора' : 'Подписаться на автора'}
+              {author.is_subscribed ? 'Unsubscribe' : 'Subscribe'}
             </Button>}
           </div>
           <Ingredients ingredients={ingredients} />

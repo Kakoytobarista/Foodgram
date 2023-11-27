@@ -214,7 +214,7 @@ const RecipeCreate = ({ onEdit }) => {
             }}
             value={recipeTime}
           />
-          <div className={styles.cookingTimeUnit}>мин.</div>
+          <div className={styles.cookingTimeUnit}>minutes</div>
         </div>
         <Textarea
           label='Description of recipe'

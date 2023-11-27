@@ -1,0 +1,1676 @@
+[
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 1,
+    "fields": {
+      "app_label": "admin",
+      "model": "logentry"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 2,
+    "fields": {
+      "app_label": "auth",
+      "model": "permission"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 3,
+    "fields": {
+      "app_label": "auth",
+      "model": "group"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 4,
+    "fields": {
+      "app_label": "contenttypes",
+      "model": "contenttype"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 5,
+    "fields": {
+      "app_label": "sessions",
+      "model": "session"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 6,
+    "fields": {
+      "app_label": "authtoken",
+      "model": "token"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 7,
+    "fields": {
+      "app_label": "authtoken",
+      "model": "tokenproxy"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 8,
+    "fields": {
+      "app_label": "recipes",
+      "model": "ingredient"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 9,
+    "fields": {
+      "app_label": "recipes",
+      "model": "ingredientrecipe"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 10,
+    "fields": {
+      "app_label": "recipes",
+      "model": "recipe"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 11,
+    "fields": {
+      "app_label": "recipes",
+      "model": "tag"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 12,
+    "fields": {
+      "app_label": "users",
+      "model": "user"
+    }
+  },
+  {
+    "model": "sessions.session",
+    "pk": "tcju0bk0etgxplxqq3yndyw15whvb7ll",
+    "fields": {
+      "session_data": "NzI2MmZkZjg0YmY5M2MyOTRiNWE3YTlkNjA0OGRmNTllNWU4NTkxODp7Il9hdXRoX3VzZXJfaWQiOiIyIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJhMDE0NDExNGQyNWI5OTI5NTAwNTQ1NDU1Njg2ZGZkZWFmNDQ1ODQ5In0=",
+      "expire_date": "2023-12-11T23:08:40.100Z"
+    }
+  },
+  {
+    "model": "recipes.tag",
+    "pk": 1,
+    "fields": {
+      "name": "Breakfast",
+      "color": "#008000",
+      "slug": "breakfast"
+    }
+  },
+  {
+    "model": "recipes.tag",
+    "pk": 2,
+    "fields": {
+      "name": "Lunch",
+      "color": "#FFFF00",
+      "slug": "lunch"
+    }
+  },
+  {
+    "model": "recipes.tag",
+    "pk": 3,
+    "fields": {
+      "name": "Dinner",
+      "color": "#FFA500",
+      "slug": "dinner"
+    }
+  },
+  {
+    "model": "recipes.ingredient",
+    "pk": 1,
+    "fields": {
+      "name": "Salt",
+      "count": 10,
+      "measurement_unit": "grams"
+    }
+  },
+  {
+    "model": "recipes.ingredient",
+    "pk": 2,
+    "fields": {
+      "name": "Pepper",
+      "count": 20,
+      "measurement_unit": "grams"
+    }
+  },
+  {
+    "model": "recipes.ingredient",
+    "pk": 3,
+    "fields": {
+      "name": "Eggs",
+      "count": 3,
+      "measurement_unit": "pieces"
+    }
+  },
+  {
+    "model": "recipes.ingredient",
+    "pk": 4,
+    "fields": {
+      "name": "Tomato",
+      "count": 50,
+      "measurement_unit": "grams"
+    }
+  },
+  {
+    "model": "recipes.ingredient",
+    "pk": 5,
+    "fields": {
+      "name": "Parma ham",
+      "count": 4,
+      "measurement_unit": "pieces"
+    }
+  },
+  {
+    "model": "recipes.ingredient",
+    "pk": 6,
+    "fields": {
+      "name": "Toasting muffins",
+      "count": 2,
+      "measurement_unit": "pieces"
+    }
+  },
+  {
+    "model": "recipes.ingredient",
+    "pk": 7,
+    "fields": {
+      "name": "White wine vinegar",
+      "count": 100,
+      "measurement_unit": "milliliters"
+    }
+  },
+  {
+    "model": "recipes.ingredient",
+    "pk": 8,
+    "fields": {
+      "name": "Rice",
+      "count": 250,
+      "measurement_unit": "grams"
+    }
+  },
+  {
+    "model": "recipes.ingredient",
+    "pk": 9,
+    "fields": {
+      "name": "Vegetable oil",
+      "count": 10,
+      "measurement_unit": "milliliters"
+    }
+  },
+  {
+    "model": "recipes.ingredient",
+    "pk": 10,
+    "fields": {
+      "name": "Onion",
+      "count": 1,
+      "measurement_unit": "pieces"
+    }
+  },
+  {
+    "model": "recipes.ingredient",
+    "pk": 11,
+    "fields": {
+      "name": "Good-quality sausages",
+      "count": 6,
+      "measurement_unit": "pieces"
+    }
+  },
+  {
+    "model": "recipes.ingredient",
+    "pk": 12,
+    "fields": {
+      "name": "Mushroom",
+      "count": 250,
+      "measurement_unit": "grams"
+    }
+  },
+  {
+    "model": "recipes.ingredient",
+    "pk": 13,
+    "fields": {
+      "name": "Tomato pasta sauce",
+      "count": 60,
+      "measurement_unit": "grams"
+    }
+  },
+  {
+    "model": "recipes.ingredient",
+    "pk": 14,
+    "fields": {
+      "name": "Penne",
+      "count": 300,
+      "measurement_unit": "grams"
+    }
+  },
+  {
+    "model": "recipes.ingredient",
+    "pk": 15,
+    "fields": {
+      "name": "Pasta shapes",
+      "count": 300,
+      "measurement_unit": "grams"
+    }
+  },
+  {
+    "model": "recipes.ingredient",
+    "pk": 16,
+    "fields": {
+      "name": "Parmesan",
+      "count": 50,
+      "measurement_unit": "grams"
+    }
+  },
+  {
+    "model": "recipes.ingredient",
+    "pk": 17,
+    "fields": {
+      "name": "Ham Cream",
+      "count": 30,
+      "measurement_unit": "grams"
+    }
+  },
+  {
+    "model": "recipes.ingredient",
+    "pk": 18,
+    "fields": {
+      "name": "Farfalle",
+      "count": 300,
+      "measurement_unit": "grams"
+    }
+  },
+  {
+    "model": "recipes.ingredient",
+    "pk": 19,
+    "fields": {
+      "name": "Frozen Peas",
+      "count": 200,
+      "measurement_unit": "grams"
+    }
+  },
+  {
+    "model": "recipes.ingredient",
+    "pk": 20,
+    "fields": {
+      "name": "Garlic",
+      "count": 1,
+      "measurement_unit": "pieces"
+    }
+  },
+  {
+    "model": "recipes.ingredient",
+    "pk": 21,
+    "fields": {
+      "name": "Salami",
+      "count": 85,
+      "measurement_unit": "grams"
+    }
+  },
+  {
+    "model": "recipes.ingredient",
+    "pk": 22,
+    "fields": {
+      "name": "Basil",
+      "count": 90,
+      "measurement_unit": "grams"
+    }
+  },
+  {
+    "model": "recipes.ingredient",
+    "pk": 23,
+    "fields": {
+      "name": "Cherry tomatoes",
+      "count": 80,
+      "measurement_unit": "grams"
+    }
+  },
+  {
+    "model": "recipes.ingredient",
+    "pk": 24,
+    "fields": {
+      "name": "Chorizo",
+      "count": 100,
+      "measurement_unit": "grams"
+    }
+  },
+  {
+    "model": "recipes.ingredientrecipe",
+    "pk": 1,
+    "fields": {
+      "ingredient": 1,
+      "recipe": 1,
+      "amount": 20
+    }
+  },
+  {
+    "model": "recipes.ingredientrecipe",
+    "pk": 2,
+    "fields": {
+      "ingredient": 2,
+      "recipe": 1,
+      "amount": 30
+    }
+  },
+  {
+    "model": "recipes.ingredientrecipe",
+    "pk": 3,
+    "fields": {
+      "ingredient": 3,
+      "recipe": 1,
+      "amount": 3
+    }
+  },
+  {
+    "model": "recipes.ingredientrecipe",
+    "pk": 4,
+    "fields": {
+      "ingredient": 1,
+      "recipe": 2,
+      "amount": 20
+    }
+  },
+  {
+    "model": "recipes.ingredientrecipe",
+    "pk": 5,
+    "fields": {
+      "ingredient": 2,
+      "recipe": 2,
+      "amount": 10
+    }
+  },
+  {
+    "model": "recipes.ingredientrecipe",
+    "pk": 6,
+    "fields": {
+      "ingredient": 3,
+      "recipe": 2,
+      "amount": 2
+    }
+  },
+  {
+    "model": "recipes.ingredientrecipe",
+    "pk": 7,
+    "fields": {
+      "ingredient": 5,
+      "recipe": 2,
+      "amount": 4
+    }
+  },
+  {
+    "model": "recipes.ingredientrecipe",
+    "pk": 8,
+    "fields": {
+      "ingredient": 7,
+      "recipe": 2,
+      "amount": 200
+    }
+  },
+  {
+    "model": "recipes.ingredientrecipe",
+    "pk": 9,
+    "fields": {
+      "ingredient": 6,
+      "recipe": 2,
+      "amount": 2
+    }
+  },
+  {
+    "model": "recipes.ingredientrecipe",
+    "pk": 10,
+    "fields": {
+      "ingredient": 1,
+      "recipe": 3,
+      "amount": 5
+    }
+  },
+  {
+    "model": "recipes.ingredientrecipe",
+    "pk": 11,
+    "fields": {
+      "ingredient": 2,
+      "recipe": 3,
+      "amount": 5
+    }
+  },
+  {
+    "model": "recipes.ingredientrecipe",
+    "pk": 12,
+    "fields": {
+      "ingredient": 3,
+      "recipe": 3,
+      "amount": 3
+    }
+  },
+  {
+    "model": "recipes.ingredientrecipe",
+    "pk": 13,
+    "fields": {
+      "ingredient": 10,
+      "recipe": 3,
+      "amount": 2
+    }
+  },
+  {
+    "model": "recipes.ingredientrecipe",
+    "pk": 14,
+    "fields": {
+      "ingredient": 9,
+      "recipe": 3,
+      "amount": 20
+    }
+  },
+  {
+    "model": "recipes.ingredientrecipe",
+    "pk": 15,
+    "fields": {
+      "ingredient": 1,
+      "recipe": 4,
+      "amount": 10
+    }
+  },
+  {
+    "model": "recipes.ingredientrecipe",
+    "pk": 16,
+    "fields": {
+      "ingredient": 2,
+      "recipe": 4,
+      "amount": 20
+    }
+  },
+  {
+    "model": "recipes.ingredientrecipe",
+    "pk": 17,
+    "fields": {
+      "ingredient": 7,
+      "recipe": 4,
+      "amount": 100
+    }
+  },
+  {
+    "model": "recipes.ingredientrecipe",
+    "pk": 18,
+    "fields": {
+      "ingredient": 14,
+      "recipe": 4,
+      "amount": 300
+    }
+  },
+  {
+    "model": "recipes.ingredientrecipe",
+    "pk": 19,
+    "fields": {
+      "ingredient": 11,
+      "recipe": 4,
+      "amount": 6
+    }
+  },
+  {
+    "model": "recipes.ingredientrecipe",
+    "pk": 20,
+    "fields": {
+      "ingredient": 13,
+      "recipe": 4,
+      "amount": 60
+    }
+  },
+  {
+    "model": "recipes.ingredientrecipe",
+    "pk": 21,
+    "fields": {
+      "ingredient": 1,
+      "recipe": 5,
+      "amount": 30
+    }
+  },
+  {
+    "model": "recipes.ingredientrecipe",
+    "pk": 22,
+    "fields": {
+      "ingredient": 2,
+      "recipe": 5,
+      "amount": 20
+    }
+  },
+  {
+    "model": "recipes.ingredientrecipe",
+    "pk": 23,
+    "fields": {
+      "ingredient": 17,
+      "recipe": 5,
+      "amount": 60
+    }
+  },
+  {
+    "model": "recipes.ingredientrecipe",
+    "pk": 24,
+    "fields": {
+      "ingredient": 12,
+      "recipe": 5,
+      "amount": 100
+    }
+  },
+  {
+    "model": "recipes.ingredientrecipe",
+    "pk": 25,
+    "fields": {
+      "ingredient": 11,
+      "recipe": 5,
+      "amount": 5
+    }
+  },
+  {
+    "model": "recipes.ingredientrecipe",
+    "pk": 26,
+    "fields": {
+      "ingredient": 3,
+      "recipe": 5,
+      "amount": 2
+    }
+  },
+  {
+    "model": "recipes.ingredientrecipe",
+    "pk": 27,
+    "fields": {
+      "ingredient": 16,
+      "recipe": 5,
+      "amount": 50
+    }
+  },
+  {
+    "model": "recipes.ingredientrecipe",
+    "pk": 28,
+    "fields": {
+      "ingredient": 18,
+      "recipe": 6,
+      "amount": 400
+    }
+  },
+  {
+    "model": "recipes.ingredientrecipe",
+    "pk": 29,
+    "fields": {
+      "ingredient": 4,
+      "recipe": 6,
+      "amount": 200
+    }
+  },
+  {
+    "model": "recipes.ingredientrecipe",
+    "pk": 30,
+    "fields": {
+      "ingredient": 21,
+      "recipe": 6,
+      "amount": 150
+    }
+  },
+  {
+    "model": "recipes.ingredientrecipe",
+    "pk": 31,
+    "fields": {
+      "ingredient": 20,
+      "recipe": 6,
+      "amount": 4
+    }
+  },
+  {
+    "model": "recipes.ingredientrecipe",
+    "pk": 32,
+    "fields": {
+      "ingredient": 7,
+      "recipe": 6,
+      "amount": 200
+    }
+  },
+  {
+    "model": "recipes.ingredientrecipe",
+    "pk": 33,
+    "fields": {
+      "ingredient": 9,
+      "recipe": 6,
+      "amount": 40
+    }
+  },
+  {
+    "model": "recipes.ingredientrecipe",
+    "pk": 34,
+    "fields": {
+      "ingredient": 14,
+      "recipe": 7,
+      "amount": 400
+    }
+  },
+  {
+    "model": "recipes.ingredientrecipe",
+    "pk": 35,
+    "fields": {
+      "ingredient": 9,
+      "recipe": 7,
+      "amount": 80
+    }
+  },
+  {
+    "model": "recipes.ingredientrecipe",
+    "pk": 36,
+    "fields": {
+      "ingredient": 24,
+      "recipe": 7,
+      "amount": 100
+    }
+  },
+  {
+    "model": "recipes.ingredientrecipe",
+    "pk": 37,
+    "fields": {
+      "ingredient": 4,
+      "recipe": 7,
+      "amount": 80
+    }
+  },
+  {
+    "model": "recipes.ingredientrecipe",
+    "pk": 38,
+    "fields": {
+      "ingredient": 22,
+      "recipe": 7,
+      "amount": 100
+    }
+  },
+  {
+    "model": "recipes.ingredientrecipe",
+    "pk": 39,
+    "fields": {
+      "ingredient": 16,
+      "recipe": 7,
+      "amount": 150
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 1,
+    "fields": {
+      "name": "Can add log entry",
+      "content_type": 1,
+      "codename": "add_logentry"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 2,
+    "fields": {
+      "name": "Can change log entry",
+      "content_type": 1,
+      "codename": "change_logentry"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 3,
+    "fields": {
+      "name": "Can delete log entry",
+      "content_type": 1,
+      "codename": "delete_logentry"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 4,
+    "fields": {
+      "name": "Can view log entry",
+      "content_type": 1,
+      "codename": "view_logentry"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 5,
+    "fields": {
+      "name": "Can add permission",
+      "content_type": 2,
+      "codename": "add_permission"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 6,
+    "fields": {
+      "name": "Can change permission",
+      "content_type": 2,
+      "codename": "change_permission"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 7,
+    "fields": {
+      "name": "Can delete permission",
+      "content_type": 2,
+      "codename": "delete_permission"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 8,
+    "fields": {
+      "name": "Can view permission",
+      "content_type": 2,
+      "codename": "view_permission"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 9,
+    "fields": {
+      "name": "Can add group",
+      "content_type": 3,
+      "codename": "add_group"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 10,
+    "fields": {
+      "name": "Can change group",
+      "content_type": 3,
+      "codename": "change_group"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 11,
+    "fields": {
+      "name": "Can delete group",
+      "content_type": 3,
+      "codename": "delete_group"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 12,
+    "fields": {
+      "name": "Can view group",
+      "content_type": 3,
+      "codename": "view_group"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 13,
+    "fields": {
+      "name": "Can add content type",
+      "content_type": 4,
+      "codename": "add_contenttype"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 14,
+    "fields": {
+      "name": "Can change content type",
+      "content_type": 4,
+      "codename": "change_contenttype"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 15,
+    "fields": {
+      "name": "Can delete content type",
+      "content_type": 4,
+      "codename": "delete_contenttype"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 16,
+    "fields": {
+      "name": "Can view content type",
+      "content_type": 4,
+      "codename": "view_contenttype"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 17,
+    "fields": {
+      "name": "Can add session",
+      "content_type": 5,
+      "codename": "add_session"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 18,
+    "fields": {
+      "name": "Can change session",
+      "content_type": 5,
+      "codename": "change_session"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 19,
+    "fields": {
+      "name": "Can delete session",
+      "content_type": 5,
+      "codename": "delete_session"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 20,
+    "fields": {
+      "name": "Can view session",
+      "content_type": 5,
+      "codename": "view_session"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 21,
+    "fields": {
+      "name": "Can add Token",
+      "content_type": 6,
+      "codename": "add_token"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 22,
+    "fields": {
+      "name": "Can change Token",
+      "content_type": 6,
+      "codename": "change_token"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 23,
+    "fields": {
+      "name": "Can delete Token",
+      "content_type": 6,
+      "codename": "delete_token"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 24,
+    "fields": {
+      "name": "Can view Token",
+      "content_type": 6,
+      "codename": "view_token"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 25,
+    "fields": {
+      "name": "Can add token",
+      "content_type": 7,
+      "codename": "add_tokenproxy"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 26,
+    "fields": {
+      "name": "Can change token",
+      "content_type": 7,
+      "codename": "change_tokenproxy"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 27,
+    "fields": {
+      "name": "Can delete token",
+      "content_type": 7,
+      "codename": "delete_tokenproxy"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 28,
+    "fields": {
+      "name": "Can view token",
+      "content_type": 7,
+      "codename": "view_tokenproxy"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 29,
+    "fields": {
+      "name": "Can add Ingredient",
+      "content_type": 8,
+      "codename": "add_ingredient"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 30,
+    "fields": {
+      "name": "Can change Ingredient",
+      "content_type": 8,
+      "codename": "change_ingredient"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 31,
+    "fields": {
+      "name": "Can delete Ingredient",
+      "content_type": 8,
+      "codename": "delete_ingredient"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 32,
+    "fields": {
+      "name": "Can view Ingredient",
+      "content_type": 8,
+      "codename": "view_ingredient"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 33,
+    "fields": {
+      "name": "Can add Ingredient - Recipe",
+      "content_type": 9,
+      "codename": "add_ingredientrecipe"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 34,
+    "fields": {
+      "name": "Can change Ingredient - Recipe",
+      "content_type": 9,
+      "codename": "change_ingredientrecipe"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 35,
+    "fields": {
+      "name": "Can delete Ingredient - Recipe",
+      "content_type": 9,
+      "codename": "delete_ingredientrecipe"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 36,
+    "fields": {
+      "name": "Can view Ingredient - Recipe",
+      "content_type": 9,
+      "codename": "view_ingredientrecipe"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 37,
+    "fields": {
+      "name": "Can add Recipe",
+      "content_type": 10,
+      "codename": "add_recipe"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 38,
+    "fields": {
+      "name": "Can change Recipe",
+      "content_type": 10,
+      "codename": "change_recipe"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 39,
+    "fields": {
+      "name": "Can delete Recipe",
+      "content_type": 10,
+      "codename": "delete_recipe"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 40,
+    "fields": {
+      "name": "Can view Recipe",
+      "content_type": 10,
+      "codename": "view_recipe"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 41,
+    "fields": {
+      "name": "Can add Tag",
+      "content_type": 11,
+      "codename": "add_tag"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 42,
+    "fields": {
+      "name": "Can change Tag",
+      "content_type": 11,
+      "codename": "change_tag"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 43,
+    "fields": {
+      "name": "Can delete Tag",
+      "content_type": 11,
+      "codename": "delete_tag"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 44,
+    "fields": {
+      "name": "Can view Tag",
+      "content_type": 11,
+      "codename": "view_tag"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 45,
+    "fields": {
+      "name": "Can add User",
+      "content_type": 12,
+      "codename": "add_user"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 46,
+    "fields": {
+      "name": "Can change User",
+      "content_type": 12,
+      "codename": "change_user"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 47,
+    "fields": {
+      "name": "Can delete User",
+      "content_type": 12,
+      "codename": "delete_user"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 48,
+    "fields": {
+      "name": "Can view User",
+      "content_type": 12,
+      "codename": "view_user"
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 1,
+    "fields": {
+      "last_login": "2023-11-27T23:07:51.518Z",
+      "is_superuser": false,
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2023-11-27T23:07:43.826Z",
+      "username": "john",
+      "password": "pbkdf2_sha256$150000$VBjGFcinDYVJ$+0Su/v/Ubotm7n8MYPSipL1eN00tEmPPqPI7IUB7gIE=",
+      "email": "john@gmail.com",
+      "bio": "",
+      "role": "auth_user",
+      "first_name": "John",
+      "last_name": "Miller",
+      "groups": [],
+      "user_permissions": [],
+      "subscribe": []
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 2,
+    "fields": {
+      "last_login": "2023-11-27T23:08:40.098Z",
+      "is_superuser": true,
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2023-11-27T23:08:33.341Z",
+      "username": "admin",
+      "password": "pbkdf2_sha256$150000$LXUZcdBix15j$pDrnKJeAjW0eRHBFY+hkK2v+gTDF5xEOHHMxyg0pSA4=",
+      "email": "admin@gmail.com",
+      "bio": "",
+      "role": "auth_user",
+      "first_name": "",
+      "last_name": "",
+      "groups": [],
+      "user_permissions": [],
+      "subscribe": []
+    }
+  },
+  {
+    "model": "recipes.recipe",
+    "pk": 1,
+    "fields": {
+      "author": 1,
+      "name": "Basic omelette recipe",
+      "image": "075cca0d-969e-4524-bbc6-dcf078c8840f.jpg",
+      "text": "<strong>STEP 1:</strong>\r\nSeason the beaten eggs well with salt and pepper. Heat the oil and butter in a non-stick frying pan over a medium-low heat until the butter has melted and is foaming.\r\n<br>\r\n<br>\r\n<strong>STEP 2:</strong>\r\nPour the eggs into the pan, tilt the pan ever so slightly from one side to another to allow the eggs to swirl and cover the surface of the pan completely. Let the mixture cook for about 20 seconds then scrape a line through the middle with a spatula.\r\n<br>\r\n<br>\r\n<strong>STEP 3:</strong>\r\nTilt the pan again to allow it to fill back up with the runny egg. Repeat once or twice more until the egg has just set.\r\n<br>\r\n<br>\r\n<strong>STEP 4:</strong>\r\nAt this point you can fill the omelette with whatever you like \u2013 some grated cheese, sliced ham, fresh herbs, saut\u00e9ed mushrooms or smoked salmon all work well. Scatter the filling over the top of the omelette and fold gently in half with the spatula. Slide onto a plate to serve.",
+      "cooking_time": 15,
+      "pub_date": "2023-11-27T23:13:33.829Z",
+      "ingredients": [],
+      "tags": [
+        1
+      ],
+      "favorite": [],
+      "in_cart": []
+    }
+  },
+  {
+    "model": "recipes.recipe",
+    "pk": 2,
+    "fields": {
+      "author": 1,
+      "name": "Eggs benedict",
+      "image": "b3d307e0-594e-4d34-bf1b-d53444441bbb.jpg",
+      "text": "<strong>STEP 1:</strong>\nBring a deep saucepan of water to the boil (at least 2 litres) and add 3 tbsp white wine vinegar. Lower the heat down to a gentle simmer.\n<br>\n<br>\n<strong>STEP 2:</strong>\nBreak the eggs into four separate coffee cups or ramekins. Split the muffins, toast them for a few minutes either side and warm some plates.",
+      "cooking_time": 15,
+      "pub_date": "2023-11-27T23:18:20.210Z",
+      "ingredients": [],
+      "tags": [
+        1
+      ],
+      "favorite": [],
+      "in_cart": []
+    }
+  },
+  {
+    "model": "recipes.recipe",
+    "pk": 3,
+    "fields": {
+      "author": 1,
+      "name": "Easy egg-fried rice",
+      "image": "f2b31348-e42c-464f-9bf4-e94590ada202.jpg",
+      "text": "<strong>STEP 1:</strong>\nCook the rice following pack instructions, then drain, spread it out to steam-dry and set aside.\n<br>\n<br>\n<strong>STEP 2:</strong>\nHeat 2 tbsp of the oil in a large wok over a high heat, then add the onion and fry until lightly browned, around 5 mins. Add the rice, stir and toast for about 3 mins, then move to the side of the pan.\n<br>\n<br>\n<strong>STEP 3:</strong>\nAdd the remaining oil, then tip in the egg mixture. Leave to cook a little, then mix in with the rice \u2013 stir vigorously to coat the grains or, if you prefer the egg chunkier, allow to set for a little longer before breaking up and stirring through. Tip into a serving bowl and scatter over the spring onion to serve. You can also add sesame oil, ground white pepper and a splash of soy sauce to season.",
+      "cooking_time": 20,
+      "pub_date": "2023-11-27T23:23:17.020Z",
+      "ingredients": [],
+      "tags": [
+        1,
+        2
+      ],
+      "favorite": [],
+      "in_cart": []
+    }
+  },
+  {
+    "model": "recipes.recipe",
+    "pk": 4,
+    "fields": {
+      "author": 1,
+      "name": "Quick sausage bolognese",
+      "image": "89d8b3a5-0034-4599-84b4-40f6ae72cb93.jpg",
+      "text": "<strong>STEP 1:</strong>\nHeat a large, wide frying pan, then crumble in the sausage meat and fennel seeds (there\u2019s no need to add any oil). Fry for a few mins until golden and the fat is released, stirring well to break up the meat. Add the mushrooms and fry for a few mins until beginning to soften. Stir in the wine now, if using, bubble for 1 min, then add the tomato sauce and heat through until bubbling.\n<br>\n<br>\n<strong>STEP 2:</strong>\nMeanwhile, boil the penne. When ready, drain and tip into the sauce. Mix well until completely coated, then divide between four plates, finishing with a little parmesan.",
+      "cooking_time": 30,
+      "pub_date": "2023-11-27T23:29:00.846Z",
+      "ingredients": [],
+      "tags": [
+        2,
+        3
+      ],
+      "favorite": [],
+      "in_cart": []
+    }
+  },
+  {
+    "model": "recipes.recipe",
+    "pk": 5,
+    "fields": {
+      "author": 1,
+      "name": "Mushroom & sausage pasta",
+      "image": "dc8bff85-1b6a-4b88-bfeb-f688cdb11497.jpg",
+      "text": "<strong>STEP 1:</strong>\nDry-fry the sausage meat in a non-stick pan for 8-10 mins until browned, breaking it up with a wooden spoon, then remove and set aside. Fry bacon and mushrooms for 5-8 mins until golden, return the sausage meat and keep warm.\n<br>\n<br>\n<strong>STEP 2:</strong>\nCook the pasta following pack instructions. Make the sauce by beating together the Parmesan, egg yolks, most of the parsley and the cr\u00e8me fra\u00eeche. When the pasta is cooked, drain, reserving a ladle of the cooking water.\n<br>\n<br>\n<strong>STEP 3:</strong>\nCombine the pasta and meat mixture over a low heat and add the sauce. Season and quickly mix, adding a splash of cooking water if it\u2019s a little thick. Spoon into bowls and eat with the extra Parmesan shavings and remaining parsley on top.",
+      "cooking_time": 25,
+      "pub_date": "2023-11-27T23:33:36.099Z",
+      "ingredients": [],
+      "tags": [
+        2,
+        3
+      ],
+      "favorite": [],
+      "in_cart": []
+    }
+  },
+  {
+    "model": "recipes.recipe",
+    "pk": 6,
+    "fields": {
+      "author": 1,
+      "name": "Quick and easy pasta salad",
+      "image": "132395bc-3776-4542-bbbf-8472d2a0233c.jpg",
+      "text": "<strong>STEP 1:</strong>\nCOOK THE PASTA: Boil the pasta in salted water for 8 minutes then add the peas, return the water to the boil and cook for 2 minutes more until the pasta and peas are tender. Tip into a colander over the sink, cool the pasta and peas under the cold tap then drain really well.\n<br>\n<br>\n\n<strong>STEP 2:</strong>\nMAKE THE DRESSING: While the pasta is boiling roughly chop the tomato and put in a food processor with half the sun-dried tomatoes, the olive oil, vinegar, garlic and about 8 basil leaves. Season with plenty of salt and freshly ground pepper then whizz until smooth. Tip into a large salad bowl.\n<br>\n<br>\n<strong>STEP 3:</strong>\nTOSS AND SERVE: Add the pasta and peas to the dressing, roughly slice the rest of the sun-dried tomatoes and add to the pasta with the remaining basil leaves. Tear in the prosciutto or salami and toss everything together. Pile into bowls and, if possible, eat outside.",
+      "cooking_time": 20,
+      "pub_date": "2023-11-27T23:37:56.408Z",
+      "ingredients": [],
+      "tags": [
+        2,
+        3
+      ],
+      "favorite": [],
+      "in_cart": []
+    }
+  },
+  {
+    "model": "recipes.recipe",
+    "pk": 7,
+    "fields": {
+      "author": 1,
+      "name": "Chorizo & chilli pepper pasta",
+      "image": "150266ff-f361-471f-9258-0be1c04604ed.jpg",
+      "text": "<strong>STEP 1:</strong>\nBring a large pan of salted water to the boil. Add the pasta, give it a good stir, then cook for 1 min less than pack instructions, about 9-10 mins.\n<br>\n<br>\n<strong>STEP 2:</strong>\nHeat the oil in a saut\u00e9 pan over a high heat. Add the chorizo and cook for a couple of mins until the oils have been released, then add the tomatoes, a pinch of sugar and some seasoning. Bubble away for 5 mins, then drain the pasta, toss it through the sauce and stir in the peppers and basil. Serve with a generous grating of parmesan scattered over.",
+      "cooking_time": 35,
+      "pub_date": "2023-11-27T23:41:31.830Z",
+      "ingredients": [],
+      "tags": [
+        3
+      ],
+      "favorite": [],
+      "in_cart": []
+    }
+  },
+  {
+    "model": "authtoken.token",
+    "pk": "4de47a16f77db1d4f0b35b6a216178d0c4318adf",
+    "fields": {
+      "user": 1,
+      "created": "2023-11-27T23:07:51.518Z"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 1,
+    "fields": {
+      "action_time": "2023-11-27T23:09:14.102Z",
+      "user": 2,
+      "content_type": 11,
+      "object_id": "1",
+      "object_repr": "Breakfast",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 2,
+    "fields": {
+      "action_time": "2023-11-27T23:09:40.526Z",
+      "user": 2,
+      "content_type": 11,
+      "object_id": "2",
+      "object_repr": "Lunch",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 3,
+    "fields": {
+      "action_time": "2023-11-27T23:09:56.604Z",
+      "user": 2,
+      "content_type": 11,
+      "object_id": "3",
+      "object_repr": "Dinner",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 4,
+    "fields": {
+      "action_time": "2023-11-27T23:10:31.363Z",
+      "user": 2,
+      "content_type": 8,
+      "object_id": "1",
+      "object_repr": "Salt",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 5,
+    "fields": {
+      "action_time": "2023-11-27T23:10:55.084Z",
+      "user": 2,
+      "content_type": 8,
+      "object_id": "2",
+      "object_repr": "Pepper",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 6,
+    "fields": {
+      "action_time": "2023-11-27T23:11:03.596Z",
+      "user": 2,
+      "content_type": 8,
+      "object_id": "3",
+      "object_repr": "Eggs",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 7,
+    "fields": {
+      "action_time": "2023-11-27T23:11:11.514Z",
+      "user": 2,
+      "content_type": 8,
+      "object_id": "4",
+      "object_repr": "Tomato",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 8,
+    "fields": {
+      "action_time": "2023-11-27T23:13:57.753Z",
+      "user": 2,
+      "content_type": 10,
+      "object_id": "1",
+      "object_repr": "Basic omelette recipe",
+      "action_flag": 2,
+      "change_message": "[{\"changed\": {\"fields\": [\"text\"]}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 9,
+    "fields": {
+      "action_time": "2023-11-27T23:15:00.520Z",
+      "user": 2,
+      "content_type": 8,
+      "object_id": "5",
+      "object_repr": "Parma ham",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 10,
+    "fields": {
+      "action_time": "2023-11-27T23:15:19.171Z",
+      "user": 2,
+      "content_type": 8,
+      "object_id": "6",
+      "object_repr": "Toasting muffins",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 11,
+    "fields": {
+      "action_time": "2023-11-27T23:15:51.702Z",
+      "user": 2,
+      "content_type": 8,
+      "object_id": "7",
+      "object_repr": "White wine vinegar",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 12,
+    "fields": {
+      "action_time": "2023-11-27T23:20:08.381Z",
+      "user": 2,
+      "content_type": 8,
+      "object_id": "8",
+      "object_repr": "Rice",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 13,
+    "fields": {
+      "action_time": "2023-11-27T23:20:19.415Z",
+      "user": 2,
+      "content_type": 8,
+      "object_id": "9",
+      "object_repr": "Vegetable oil",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 14,
+    "fields": {
+      "action_time": "2023-11-27T23:20:36.799Z",
+      "user": 2,
+      "content_type": 8,
+      "object_id": "10",
+      "object_repr": "Onion",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 15,
+    "fields": {
+      "action_time": "2023-11-27T23:26:05.449Z",
+      "user": 2,
+      "content_type": 8,
+      "object_id": "11",
+      "object_repr": "Good-quality sausages",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 16,
+    "fields": {
+      "action_time": "2023-11-27T23:26:18.744Z",
+      "user": 2,
+      "content_type": 8,
+      "object_id": "12",
+      "object_repr": "Mushroom",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 17,
+    "fields": {
+      "action_time": "2023-11-27T23:26:45.191Z",
+      "user": 2,
+      "content_type": 8,
+      "object_id": "13",
+      "object_repr": "Tomato pasta sauce",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 18,
+    "fields": {
+      "action_time": "2023-11-27T23:26:52.088Z",
+      "user": 2,
+      "content_type": 8,
+      "object_id": "14",
+      "object_repr": "Penne",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 19,
+    "fields": {
+      "action_time": "2023-11-27T23:29:34.925Z",
+      "user": 2,
+      "content_type": 8,
+      "object_id": "15",
+      "object_repr": "Pasta shapes",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 20,
+    "fields": {
+      "action_time": "2023-11-27T23:29:54.937Z",
+      "user": 2,
+      "content_type": 8,
+      "object_id": "16",
+      "object_repr": "Parmesan",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 21,
+    "fields": {
+      "action_time": "2023-11-27T23:30:26.688Z",
+      "user": 2,
+      "content_type": 8,
+      "object_id": "17",
+      "object_repr": "Ham Cream",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 22,
+    "fields": {
+      "action_time": "2023-11-27T23:34:13.618Z",
+      "user": 2,
+      "content_type": 8,
+      "object_id": "18",
+      "object_repr": "Farfalle",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 23,
+    "fields": {
+      "action_time": "2023-11-27T23:34:44.572Z",
+      "user": 2,
+      "content_type": 8,
+      "object_id": "19",
+      "object_repr": "Frozen Peas",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 24,
+    "fields": {
+      "action_time": "2023-11-27T23:35:06.773Z",
+      "user": 2,
+      "content_type": 8,
+      "object_id": "20",
+      "object_repr": "Garlic",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 25,
+    "fields": {
+      "action_time": "2023-11-27T23:35:17.521Z",
+      "user": 2,
+      "content_type": 8,
+      "object_id": "21",
+      "object_repr": "Salami",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 26,
+    "fields": {
+      "action_time": "2023-11-27T23:38:57.099Z",
+      "user": 2,
+      "content_type": 8,
+      "object_id": "22",
+      "object_repr": "Basil",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 27,
+    "fields": {
+      "action_time": "2023-11-27T23:39:09.016Z",
+      "user": 2,
+      "content_type": 8,
+      "object_id": "23",
+      "object_repr": "Cherry tomatoes",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 28,
+    "fields": {
+      "action_time": "2023-11-27T23:39:23.100Z",
+      "user": 2,
+      "content_type": 8,
+      "object_id": "24",
+      "object_repr": "Chorizo",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  }
+]

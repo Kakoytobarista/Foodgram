@@ -104,11 +104,11 @@ const RecipeEdit = ({ onItemDelete }) => {
   return <Main>
     <Container>
       <MetaTags>
-        <title>Редактирование рецепта</title>
-        <meta name="description" content="Продуктовый помощник - Редактирование рецепта" />
-        <meta property="og:title" content="Редактирование рецепта" />
+        <title>Edit recipe</title>
+        <meta name="description" content="Grocery assistant - Edit recipe" />
+        <meta property="og:title" content="Edit recipe" />
       </MetaTags>
-      <Title title='Редактирование рецепта' />
+      <Title title='Edit recipe' />
       <Form
         className={styles.form}
         onSubmit={e => {
@@ -137,13 +137,13 @@ const RecipeEdit = ({ onItemDelete }) => {
                 return alert(non_field_errors.join(', '))
               }
               if (ingredients) {
-                return alert(`Ингредиенты: ${ingredients.filter(item => Object.keys(item).length).map(item => {
+                return alert(`Ingredient: ${ingredients.filter(item => Object.keys(item).length).map(item => {
                   const error = item[Object.keys(item)[0]]
                   return error && error.join(' ,')
                 })[0]}`)
               }
               if (cooking_time) {
-                return alert(`Время готовки: ${cooking_time[0]}`)
+                return alert(`Cooking time: ${cooking_time[0]}`)
               }
               const errors = Object.values(err)
               if (errors) {
@@ -153,7 +153,7 @@ const RecipeEdit = ({ onItemDelete }) => {
         }}
       >
         <Input
-          label='Название рецепта'
+          label='Recipe name'
           onChange={e => {
             const value = e.target.value
             setRecipeName(value)
@@ -161,7 +161,7 @@ const RecipeEdit = ({ onItemDelete }) => {
           value={recipeName}
         />
         <CheckboxGroup
-          label='Теги'
+          label='Tags'
           values={value}
           className={styles.checkboxGroup}
           labelClassName={styles.checkboxGroupLabel}
@@ -172,7 +172,7 @@ const RecipeEdit = ({ onItemDelete }) => {
         <div className={styles.ingredients}>
           <div className={styles.ingredientsInputs}>
             <Input
-              label='Ингредиенты'
+              label='Ingredients'
               className={styles.ingredientsNameInput}
               inputClassName={styles.ingredientsInput}
               labelClassName={styles.ingredientsLabel}
@@ -225,7 +225,7 @@ const RecipeEdit = ({ onItemDelete }) => {
                     })
                     setRecipeIngredients(recipeIngredientsUpdated)
                   }}
-                >Удалить</span>
+                >Remove</span>
               </div>
             })}
           </div>
@@ -242,12 +242,12 @@ const RecipeEdit = ({ onItemDelete }) => {
               })
             }}
           >
-            Добавить ингредиент
+            Add Ingredients
           </div>
         </div>
         <div className={styles.cookingTime}>
           <Input
-            label='Время приготовления'
+            label='Cooking time'
             className={styles.ingredientsTimeInput}
             labelClassName={styles.cookingTimeLabel}
             inputClassName={styles.ingredientsTimeValue}
@@ -257,10 +257,10 @@ const RecipeEdit = ({ onItemDelete }) => {
             }}
             value={recipeTime}
           />
-          <div className={styles.cookingTimeUnit}>мин.</div>
+          <div className={styles.cookingTimeUnit}>minutes</div>
         </div>
         <Textarea
-          label='Описание рецепта'
+          label='Recipe Description'
           onChange={e => {
             const value = e.target.value
             setRecipeText(value)
@@ -273,7 +273,7 @@ const RecipeEdit = ({ onItemDelete }) => {
             setRecipeFile(file)
           }}
           className={styles.fileInput}
-          label='Загрузить фото'
+          label='Upload image'
           file={recipeFile}
         />
         <div className={styles.actions}>
@@ -282,7 +282,7 @@ const RecipeEdit = ({ onItemDelete }) => {
             disabled={checkIfDisabled()}
             className={styles.button}
           >
-            Редактировать рецепт
+            Edit recipe
           </Button>
           <div
             className={styles.deleteRecipe}
@@ -294,7 +294,7 @@ const RecipeEdit = ({ onItemDelete }) => {
                 })
             }}
           >
-            Удалить
+            Remove
           </div>
         </div>
       </Form>
