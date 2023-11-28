@@ -24,33 +24,31 @@ Technologies:
 * HTML/CSS/JS
 * React
 * Redax
-
-## Local Project Launch:
 ___
-Clone the repository and navigate to the infra/ directory:
+## Local Project Launch:
+1. *Clone the repository and navigate to the infra/ directory*:
   
 ```  
-> git clone https://github.com/yankovskaya-ktr/foodgram-project-react.git
-> cd foodgram-project-react/infra
+git clone https://github.com/yankovskaya-ktr/foodgram-project-react.git
+cd foodgram-project-react/infra
 ``` 
 
-Create a .env file based on the .env.template:
+2. *Create a .env file based on the .env.template*:
 
 ```
-> cd infra
-> chmod +x ./create_env_file.sh
-> ./create_env_file.sh
-
+cd infra
+chmod +x ./create_env_file.sh
+./create_env_file.sh
 ```
-Launch the application:
+3. *Launch the application*:
 
 ``` 
-> docker-compose up -d --build
+docker-compose up -d --build
 ``` 
 ___
 ### Credentials:
 
-Regular user:
+*Regular user*:
 
 ```username: john```
 
@@ -58,7 +56,9 @@ Regular user:
 
 ```password: johntest```
 
-Admin user:
+
+
+*Admin user*:
 
 ```username: admin```
 
@@ -68,11 +68,11 @@ Admin user:
 ___
 ### Resources:
 
-#### Main page:
+*Main page*:
 ```
 > http://localhost/
 ```
-Documentation API:
+*Documentation API*:
 ```
 > http://localhost/api/docs/
 ```
