@@ -6,10 +6,8 @@ on:
       - final_deploy
 
 jobs:
-
   tests:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v2
 
