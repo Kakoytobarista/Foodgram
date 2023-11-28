@@ -347,6 +347,33 @@
     }
   },
   {
+    "model": "recipes.ingredient",
+    "pk": 25,
+    "fields": {
+      "name": "natural yogurt",
+      "count": 300,
+      "measurement_unit": "grams"
+    }
+  },
+  {
+    "model": "recipes.ingredient",
+    "pk": 26,
+    "fields": {
+      "name": "Cumin seeds",
+      "count": 3,
+      "measurement_unit": "tbsp"
+    }
+  },
+  {
+    "model": "recipes.ingredient",
+    "pk": 27,
+    "fields": {
+      "name": "Gluten-free self-raising flour",
+      "count": 30,
+      "measurement_unit": "grams"
+    }
+  },
+  {
     "model": "recipes.ingredientrecipe",
     "pk": 1,
     "fields": {
@@ -695,6 +722,33 @@
       "ingredient": 16,
       "recipe": 7,
       "amount": 150
+    }
+  },
+  {
+    "model": "recipes.ingredientrecipe",
+    "pk": 40,
+    "fields": {
+      "ingredient": 27,
+      "recipe": 8,
+      "amount": 400
+    }
+  },
+  {
+    "model": "recipes.ingredientrecipe",
+    "pk": 41,
+    "fields": {
+      "ingredient": 26,
+      "recipe": 8,
+      "amount": 2
+    }
+  },
+  {
+    "model": "recipes.ingredientrecipe",
+    "pk": 42,
+    "fields": {
+      "ingredient": 25,
+      "recipe": 8,
+      "amount": 300
     }
   },
   {
@@ -1133,7 +1187,7 @@
     "model": "users.user",
     "pk": 1,
     "fields": {
-      "last_login": "2023-11-27T23:07:51.518Z",
+      "last_login": "2023-11-27T23:50:10.170Z",
       "is_superuser": false,
       "is_staff": false,
       "is_active": true,
@@ -1169,6 +1223,29 @@
       "groups": [],
       "user_permissions": [],
       "subscribe": []
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 3,
+    "fields": {
+      "last_login": "2023-11-27T23:53:26.750Z",
+      "is_superuser": false,
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2023-11-27T23:51:21.635Z",
+      "username": "adam",
+      "password": "pbkdf2_sha256$150000$epE5vv8SllRV$x2hK6E5pP0Gn+SDaHZEAGVLgsMKs1q5mWbiTtnuwZHw=",
+      "email": "adam@gmail.com",
+      "bio": "",
+      "role": "auth_user",
+      "first_name": "Adam",
+      "last_name": "Sandler",
+      "groups": [],
+      "user_permissions": [],
+      "subscribe": [
+        1
+      ]
     }
   },
   {
@@ -1279,7 +1356,9 @@
         2,
         3
       ],
-      "favorite": [],
+      "favorite": [
+        1
+      ],
       "in_cart": []
     }
   },
@@ -1297,16 +1376,40 @@
       "tags": [
         3
       ],
+      "favorite": [
+        1,
+        3
+      ],
+      "in_cart": [
+        3
+      ]
+    }
+  },
+  {
+    "model": "recipes.recipe",
+    "pk": 8,
+    "fields": {
+      "author": 3,
+      "name": "Easy gluten-free flatbread",
+      "image": "a5e30051-7d5a-4f44-8212-a750d4a2ccd9.jpg",
+      "text": "<strong>STEP 1:</strong>\nHeat the grill to medium and dust a baking sheet with a little flour. Mix the flour and cumin seeds in a bowl, then season. Stir in the yogurt and 100ml water, then mix well to form a soft dough.\n<br>\n<br>\n<strong>STEP 2:</strong>\nDivide the dough into 8 equal pieces, then shape into circles or ovals about \u00bdcm thick. Dust lightly with a little flour. Grill on the baking sheet for 3-5 mins on each side until golden and puffed. Serve warm.",
+      "cooking_time": 10,
+      "pub_date": "2023-11-27T23:55:59.937Z",
+      "ingredients": [],
+      "tags": [
+        2,
+        3
+      ],
       "favorite": [],
       "in_cart": []
     }
   },
   {
     "model": "authtoken.token",
-    "pk": "4de47a16f77db1d4f0b35b6a216178d0c4318adf",
+    "pk": "9a7ced229873d0b7652c62cd7a3f0713ff6c179c",
     "fields": {
-      "user": 1,
-      "created": "2023-11-27T23:07:51.518Z"
+      "user": 3,
+      "created": "2023-11-27T23:51:28.716Z"
     }
   },
   {
@@ -1669,6 +1772,45 @@
       "content_type": 8,
       "object_id": "24",
       "object_repr": "Chorizo",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 29,
+    "fields": {
+      "action_time": "2023-11-27T23:53:52.105Z",
+      "user": 2,
+      "content_type": 8,
+      "object_id": "25",
+      "object_repr": "natural yogurt",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 30,
+    "fields": {
+      "action_time": "2023-11-27T23:54:13.582Z",
+      "user": 2,
+      "content_type": 8,
+      "object_id": "26",
+      "object_repr": "Cumin seeds",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 31,
+    "fields": {
+      "action_time": "2023-11-27T23:54:29.470Z",
+      "user": 2,
+      "content_type": 8,
+      "object_id": "27",
+      "object_repr": "Gluten-free self-raising flour",
       "action_flag": 1,
       "change_message": "[{\"added\": {}}]"
     }

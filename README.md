@@ -49,7 +49,10 @@ Launch the application:
 ``` 
 > docker-compose up -d --build
 ``` 
+___
 ### Credentials:
+
+Regular user:
 
 ```username: john```
 
@@ -57,7 +60,14 @@ Launch the application:
 
 ```password: johntest```
 
+Admin user:
 
+```username: admin```
+
+```email: admin@gmail.com```
+
+```password: admintest```
+___
 ### Resources:
 
 #### Main page:
@@ -66,5 +76,5 @@ Launch the application:
 ```
 Documentation API:
 ```
-> http://localhost/api/docs/redoc.html
+> http://localhost/api/docs/
 ```
