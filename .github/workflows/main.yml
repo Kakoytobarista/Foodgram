@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - final_deploy
+      - main
 
 jobs:
   tests:
