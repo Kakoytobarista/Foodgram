@@ -1,6 +1,6 @@
 # Project Foodgram
 
-![Workflow](https://github.com/KakoytoBarista/foodgram-project-react/actions/workflows/foodgram_workflow.yml/badge.svg)
+![Workflow](https://github.com/KakoytoBarista/Foodgram/actions/workflows/main.yml/badge.svg)
 <br>
 
 ___
