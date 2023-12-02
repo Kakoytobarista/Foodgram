@@ -28,21 +28,20 @@ ___
 ## Local Project Launch:
 1. *Clone the repository and navigate to the infra/ directory*:
   
-```  
+```bash
 git clone https://github.com/yankovskaya-ktr/foodgram-project-react.git
 cd foodgram-project-react/infra
 ``` 
 
 2. *Create a .env file based on the .env.template*:
 
-```
-cd infra
+```bash
 chmod +x ./create_env_file.sh
 ./create_env_file.sh
 ```
 3. *Launch the application*:
 
-``` 
+```bash
 docker-compose up -d --build
 ``` 
 ___
@@ -69,10 +68,7 @@ ___
 ### Resources:
 
 *Main page*:
-```
-> http://localhost/
-```
+> open http://localhost/
+
 *Documentation API*:
-```
-> http://localhost/api/docs/
-```
+> open http://localhost/api/docs/
